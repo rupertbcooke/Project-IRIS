@@ -3,81 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project IRIS | Technical Portal</title>
+    <title>Project IRIS | Research Portal</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #121212; color: #e0e0e0; line-height: 1.6; margin: 0; padding: 0; }
-        header { background-color: #1f1f1f; padding: 40px 20px; border-bottom: 2px solid #333; text-align: center; }
-        h1 { margin: 0; color: #ffffff; letter-spacing: 2px; }
-        .container { max-width: 900px; margin: 20px auto; padding: 20px; }
-        section { margin-bottom: 40px; padding: 20px; background: #1a1a1a; border-radius: 8px; border: 1px solid #2a2a2a; }
-        h2 { border-bottom: 1px solid #444; padding-bottom: 10px; color: #4CAF50; font-size: 1.2rem; }
-        ul { list-style-type: square; padding-left: 20px; }
-        li { margin-bottom: 10px; }
-        .meta { color: #888; font-size: 0.9rem; margin-top: 10px; }
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px; }
-        .stat-box { background: #252525; padding: 15px; border-radius: 4px; border-left: 4px solid #4CAF50; }
-        footer { text-align: center; padding: 40px; color: #666; font-size: 0.8rem; }
-        a { color: #4CAF50; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        :root { --bg: #0d1117; --card: #161b22; --accent: #58a6ff; --text: #c9d1d9; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); padding: 20px; line-height: 1.6; }
+        .container { max-width: 800px; margin: auto; }
+        header { border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 30px; }
+        h1 { color: #f0f6fc; font-size: 1.5rem; margin: 0; }
+        .project { background: var(--card); border: 1px solid #30363d; border-radius: 6px; padding: 20px; margin-bottom: 20px; }
+        h2 { color: var(--accent); font-size: 1.1rem; margin-top: 0; }
+        .contact { font-size: 0.9rem; color: #8b949e; }
     </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>Rupert Cooke | Project IRIS</h1>
+            <div class="contact">Lead Researcher | rupertbcooke1@gmail.com</div>
+        </header>
 
-<header>
-    <h1>PROJECT IRIS</h1>
-    <p>Lead Researcher: Rupert Cooke</p>
-    <div class="meta">Location: Sarnia, Ontario | Academic: Liberal Studies, Lambton College</div>
-</header>
+        <section class="project">
+            <h2>Project IRIS</h2>
+            <p>A unified research program integrating <strong>IRIS MATH</strong> and symbolic recursion for automated scientific discovery.</p>
+        </section>
 
-<div class="container">
+        <section class="project">
+            <h2>Cloning Feasibility Model (CFM) v0.40</h2>
+            <p>A stochastic risk engine using <strong>Monte Carlo simulations</strong> to quantify SCNT success probabilities. Validated at a 0.57% mean success rate.</p>
+        </section>
 
-    <section id="about">
-        <h2>Research Overview</h2>
-        <p>Project IRIS is an umbrella research initiative focused on the intersection of automated scientific discovery and biological systems simulation. The project utilizes a local computational stack to model complex biological success probabilities and mechanistic simulations.</p>
-    </section>
+        <section class="project">
+            <h2>Bio-Simulation Engine (BSE)</h2>
+            <p>A mechanistic PK/PD multi-organ simulator designed for AI-assisted ADMET research.</p>
+        </section>
 
-    <section id="cfm">
-        <h2>Cloning Feasibility Model (CFM) v0.40</h2>
-        <p>A functional stochastic risk assessment tool developed locally to quantify success rates in mammalian cloning through Somatic Cell Nuclear Transfer (SCNT).</p>
-        <div class="stats-grid">
-            <div class="stat-box">
-                <strong>Methodology:</strong><br>
-                Monte Carlo Simulation (2,000 draws/run)
-            </div>
-            <div class="stat-box">
-                <strong>Outputs:</strong><br>
-                P05 / P50 / P95 Uncertainty Bands
-            </div>
-        </div>
-        <ul>
-            <li><strong>Sensitivity Analysis:</strong> Automated calculation of gate correlation to identify biological bottlenecks (e.g., placenta vs. embryo cleavage).</li>
-            <li><strong>Evidence Ingestion:</strong> Dynamic loading via local evidence.csv with machine-readable run logs for reproducibility.</li>
-            <li><strong>Current Metric:</strong> 0.57% mean success probability, aligning with historical SCNT data.</li>
-        </ul>
-    </section>
+        <section class="project">
+            <h2>Neural Self-Consistent System (NSCS)</h2>
+            <p>A recursive optimization engine generating symbolic equations with neural residual correction.</p>
+        </section>
 
-    <section id="bse-nscs">
-        <h2>Systems Architecture</h2>
-        <ul>
-            <li><strong>Bio-Simulation Engine (BSE):</strong> A mechanistic PK/PD biological simulator presented at Lambton College's "Project: Pitch It!" competition.</li>
-            <li><strong>Neural Self-Consistent System (NSCS):</strong> A recursive discovery framework designed for symbolic regression and scientific optimization.</li>
-        </ul>
-    </section>
-
-    <section id="contact">
-        <h2>Contact & Collaboration</h2>
-        <p>Currently seeking technical discussion regarding non-linear problem-solving and automated scientific discovery pipelines.</p>
-        <ul>
-            <li><strong>Email:</strong> <a href="mailto:rupertbcooke1@gmail.com">rupertbcooke1@gmail.com</a></li>
-            <li><strong>Hardware:</strong> Active development on Ryzen 5 5500 / RTX 3050 (6GB) architecture.</li>
-        </ul>
-    </section>
-
-</div>
-
-<footer>
-    &copy; 2026 Rupert Cooke | Project IRIS Technical Portal
-</footer>
-
+        <footer style="text-align: center; font-size: 0.8rem; color: #484f58; margin-top: 40px;">
+            &copy; 2026 Rupert Cooke | Sarnia Laboratory Station
+        </footer>
+    </div>
 </body>
 </html>
