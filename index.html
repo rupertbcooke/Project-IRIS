@@ -3,87 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project IRIS | Research Portal</title>
+    <title>Project IRIS | Technical Portal</title>
     <style>
-        :root { --bg: #0d1117; --card: #161b22; --accent: #4CAF50; --border: #30363d; --text: #c9d1d9; --muted: #8b949e; }
+        :root { --bg: #0d1117; --card: #161b22; --accent: #4CAF50; --border: #30363d; --text: #c9d1d9; --muted: #8b949e; --header-bg: #1f242c; }
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 20px; }
-        .container { max-width: 950px; margin: auto; }
-        header { border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 30px; }
-        h1 { color: #f0f6fc; font-size: 2rem; margin: 0; }
-        .contact-header { font-size: 0.9rem; color: var(--muted); margin-top: 5px; }
-        section { margin-bottom: 40px; }
-        h2 { color: var(--accent); font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 20px; }
-        .project-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 25px; margin-bottom: 20px; }
-        h3 { font-size: 1.2rem; margin-top: 0; color: #f0f6fc; }
+        .container { max-width: 1000px; margin: auto; }
+        header { background: var(--header-bg); border: 1px solid var(--border); border-radius: 8px; padding: 30px; margin-bottom: 30px; position: relative; }
+        h1 { color: #f0f6fc; font-size: 2.2rem; margin: 0; letter-spacing: 1px; }
+        .contact-bar { font-size: 0.9rem; color: var(--muted); margin-top: 10px; display: flex; gap: 20px; flex-wrap: wrap; }
+        section { margin-bottom: 50px; }
+        h2 { color: var(--accent); font-size: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
+        .project-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 30px; margin-bottom: 25px; }
+        h3 { font-size: 1.25rem; margin-top: 0; color: #f0f6fc; border-left: 4px solid var(--accent); padding-left: 15px; }
+        .tag { display: inline-block; background: #23863622; color: var(--accent); border: 1px solid var(--accent); padding: 2px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; margin-bottom: 15px; }
         ul { padding-left: 20px; }
-        li { margin-bottom: 10px; }
-        .spec-box { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 15px; }
-        .spec-item { background: #21262d; border: 1px solid var(--border); padding: 10px 15px; border-radius: 6px; font-size: 0.85rem; flex: 1; min-width: 200px; }
-        footer { text-align: center; padding: 50px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); }
-        a { color: var(--accent); text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        li { margin-bottom: 12px; }
+        strong { color: #f0f6fc; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .hardware-box { background: var(--card); border: 1px solid var(--border); padding: 20px; border-radius: 8px; }
+        .hw-item { display: flex; justify-content: space-between; border-bottom: 1px solid #30363d; padding: 8px 0; font-size: 0.9rem; }
+        footer { text-align: center; padding: 60px; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+        a { color: var(--accent); text-decoration: none; font-weight: 500; }
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Rupert Cooke | Project IRIS</h1>
-            <div class="contact-header">Lead Researcher | Sarnia Laboratory Station | <a href="mailto:rupertbcooke1@gmail.com">rupertbcooke1@gmail.com</a></div>
+            <h1>PROJECT IRIS</h1>
+            <div class="contact-bar">
+                <span><strong>Lead Researcher:</strong> Rupert Cooke</span>
+                <span><strong>Station:</strong> Sarnia-01</span>
+                <span><strong>Email:</strong> <a href="mailto:rupertbcooke1@gmail.com">rupertbcooke1@gmail.com</a></span>
+            </div>
         </header>
 
-        <section id="specifications">
-            <h2>Technical Specifications & Projects</h2>
+        <section id="simulators">
+            <h2>Active Research Simulators</h2>
             
             <div class="project-card">
-                <h3>Cloning Feasibility Model (CFM) v0.40</h3>
-                <p>A stochastic risk engine utilizing Monte Carlo methods (2,000 draws/run) to quantify mammalian cloning success.</p>
+                <span class="tag">PRODUCTION: V0.40</span>
+                <h3>Cloning Feasibility Model (CFM)</h3>
+                <p>A probabilistic gate-based model of SCNT (Somatic Cell Nuclear Transfer) designed to convert "cloning" from a qualitative concept into a formal mathematical structure.</p>
                 <ul>
-                    <li><strong>Success Metric:</strong> Validated at a 0.57% mean success rate, aligning with historical primate SCNT benchmarks.</li>
-                    <li><strong>Uncertainty Analysis:</strong> Produces P05 / P50 / P95 bands to model biological variance.</li>
-                    <li><strong>Bottleneck Detection:</strong> Automated sensitivity correlation identifies placenta and embryo cleavage as primary failure gates.</li>
+                    <li><strong>Monte Carlo Methodology:</strong> Executes 2,000 stochastic draws per benchmark, pulling parameter values from <code>evidence.csv</code> to produce P05/P50/P95 outcome distributions.</li>
+                    <li><strong>0.57% Mean Success:</strong> Current calibration point falls within historically observed ranges, validating the model against real biological constraints.</li>
+                    <li><strong>Bottleneck Detection:</strong> Utilizing a sensitivity layer to compute correlations between individual gates (e.g., placental development) and final success to guide engineering focus.</li>
                 </ul>
             </div>
 
             <div class="project-card">
+                <span class="tag">PROTOTYPE: PHYSIOLOGY</span>
                 <h3>Bio-Simulation Engine (BSE)</h3>
-                <p>Mechanistic PK/PD multi-organ simulator designed for AI-assisted ADMET research and virtual physiology modeling.</p>
+                <p>A mechanistic "Virtual Physiology" engine representing organs as coupled dynamical systems rather than black-box models.</p>
                 <ul>
-                    <li><strong>Architecture:</strong> Compartmental dynamical systems with linked fluid/tox flows.</li>
-                    <li><strong>Objective:</strong> High-fidelity simulation of drug/stressor responses to bypass traditional wet-lab friction.</li>
+                    <li><strong>Multi-Organ Architecture:</strong> Explicit state variables (concentration, immune activity, toxicity thresholds) for Liver, Kidney, and Target tissues linked by metabolic exchange flows.</li>
+                    <li><strong>PK/PD Modeling:</strong> Coupled ODE state evolution modeling drug absorption, distribution, and functional response (ADME).</li>
+                    <li><strong>Cross-Species Scaling:</strong> Active research phase testing <strong>Rabbit &rarr; Human</strong> allometric parameter scaling to demonstrate generalizability across biological systems.</li>
                 </ul>
             </div>
+        </section>
 
+        <section id="discovery">
+            <h2>Discovery & Optimization</h2>
             <div class="project-card">
+                <span class="tag">LOOP: RECURSIVE</span>
                 <h3>Neural Self-Consistent System (NSCS)</h3>
-                <p>Recursive optimization framework designed for symbolic regression and scientific equation discovery.</p>
+                <p>A closed-loop equation discovery system designed to improve mechanistic simulators by enforcing self-consistency between structure and observed dynamics.</p>
                 <ul>
-                    <li><strong>Discovery Logic:</strong> Iterative candidate generation with neural residual correction for long-term model stability.</li>
+                    <li><strong>Symbolic Search:</strong> Utilizes regression to generate candidate governing equations (ODEs) that respect structural assumptions like conservation and monotonicity.</li>
+                    <li><strong>Neural Residual Correction:</strong> A neural network learns the delta between mechanistic predictions and observed trajectories, merging them into a final "Mechanistic + Residual" configuration.</li>
+                    <li><strong>Feedback Mechanism:</strong> Rejects unstable candidates and injects improved logic back into the BSE for iterative model refinement.</li>
                 </ul>
             </div>
         </section>
 
         <section id="infrastructure">
             <h2>Laboratory Infrastructure</h2>
-            <p>All simulations and project builds are executed locally on a dedicated personal workstation to ensure data sovereignty and low-latency recursion.</p>
-            <div class="spec-box">
-                <div class="spec-item"><strong>Processor:</strong> AMD Ryzen 5 5500</div>
-                <div class="spec-item"><strong>Graphics:</strong> NVIDIA RTX 3050 (6GB)</div>
-                <div class="spec-item"><strong>Memory:</strong> 32GB RAM</div>
-                <div class="spec-item"><strong>OS:</strong> Windows 11 Home</div>
+            <div class="grid">
+                <div class="hardware-box">
+                    <strong>Workstation Specs (Local Execution)</strong>
+                    <p style="font-size: 0.85rem; color: var(--muted);">All CFM Monte Carlo runs and NSCS symbolic loops are executed on personal laboratory hardware.</p>
+                    <div class="hw-item"><span>CPU</span> <span>AMD Ryzen 5 5500</span></div>
+                    <div class="hw-item"><span>GPU</span> <span>NVIDIA RTX 3050 (6GB)</span></div>
+                    <div class="hw-item"><span>RAM</span> <span>32 GB DDR4</span></div>
+                    <div class="hw-item"><span>OS</span> <span>Windows 11 Home</span></div>
+                </div>
+                <div class="hardware-box">
+                    <strong>Operational Advantages</strong>
+                    <ul>
+                        <li style="font-size: 0.85rem;"><strong>Data Sovereignty:</strong> Local simulation cycles without cloud dependency.</li>
+                        <li style="font-size: 0.85rem;"><strong>Neural Acceleration:</strong> GPU-driven residual model training for the NSCS framework.</li>
+                        <li style="font-size: 0.85rem;"><strong>Rapid Prototyping:</strong> Local ODE integration and pre-processing for same-day iteration.</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
-        <section id="contact">
-            <h2>Contact & Engagement</h2>
-            <p>Open to technical discussions regarding non-linear problem-solving, automated scientific discovery, and biological simulation.</p>
-            <ul>
-                <li><strong>Email:</strong> <a href="mailto:rupertbcooke1@gmail.com">rupertbcooke1@gmail.com</a></li>
-                <li><strong>Project Logs:</strong> Access live simulations via the Project IRIS Scientific Log (Google Colab).</li>
-            </ul>
-        </section>
-
         <footer>
-            &copy; 2026 Rupert Cooke | Project IRIS Technical Portal | Station ID: SARNIA-01
+            &copy; 2026 Rupert Cooke | Project IRIS Technical Portal | Reproducibility Standard: MSRR-Compliant
         </footer>
     </div>
 </body>
