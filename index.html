@@ -3,102 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project IRIS | Technical Portal</title>
+    <title>Project IRIS | Research Portal</title>
     <style>
         :root { --bg: #0d1117; --card: #161b22; --accent: #4CAF50; --border: #30363d; --text: #c9d1d9; --muted: #8b949e; }
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 20px; }
-        .container { max-width: 900px; margin: auto; }
+        .container { max-width: 950px; margin: auto; }
         header { border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 30px; }
-        h1 { color: #f0f6fc; font-size: 1.8rem; margin: 0; }
-        .contact { font-size: 0.9rem; color: var(--muted); margin-top: 5px; }
+        h1 { color: #f0f6fc; font-size: 2rem; margin: 0; }
+        .contact-header { font-size: 0.9rem; color: var(--muted); margin-top: 5px; }
         section { margin-bottom: 40px; }
-        h2 { color: var(--accent); font-size: 1.3rem; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 20px; }
+        h2 { color: var(--accent); font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 20px; }
         .project-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 25px; margin-bottom: 20px; }
-        h3 { font-size: 1.1rem; margin-top: 0; color: #f0f6fc; }
-        .tag { display: inline-block; background: #21262d; border: 1px solid var(--border); padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; color: var(--muted); margin-bottom: 10px; }
+        h3 { font-size: 1.2rem; margin-top: 0; color: #f0f6fc; }
         ul { padding-left: 20px; }
-        li { margin-bottom: 8px; }
-        .roadmap-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
-        .roadmap-item { background: #0d1117; border: 1px solid var(--border); padding: 15px; border-radius: 6px; font-size: 0.85rem; }
-        footer { text-align: center; padding: 40px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); }
+        li { margin-bottom: 10px; }
+        .spec-box { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 15px; }
+        .spec-item { background: #21262d; border: 1px solid var(--border); padding: 10px 15px; border-radius: 6px; font-size: 0.85rem; flex: 1; min-width: 200px; }
+        footer { text-align: center; padding: 50px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>PROJECT IRIS</h1>
-            <div class="contact">Lead Researcher: Rupert Cooke | rupertbcooke1@gmail.com</div>
-            <div class="contact">Sarnia Laboratory Station | Station ID: CFM-v0.40</div>
+            <h1>Rupert Cooke | Project IRIS</h1>
+            <div class="contact-header">Lead Researcher | Sarnia Laboratory Station | <a href="mailto:rupertbcooke1@gmail.com">rupertbcooke1@gmail.com</a></div>
         </header>
 
         <section id="specifications">
-            <h2>Technical Specifications</h2>
+            <h2>Technical Specifications & Projects</h2>
             
             <div class="project-card">
-                <span class="tag">ACTIVE SIMULATOR</span>
                 <h3>Cloning Feasibility Model (CFM) v0.40</h3>
-                <p>A stochastic risk assessment engine for mammalian cloning via SCNT, utilizing uncertainty quantification and sensitivity analysis.</p>
+                <p>A stochastic risk engine utilizing Monte Carlo methods (2,000 draws/run) to quantify mammalian cloning success.</p>
                 <ul>
-                    <li><strong>Methodology:</strong> Monte Carlo simulation (2,000 draws/run) producing P05/P50/P95 bands.</li>
-                    <li><strong>Sensitivity Layer:</strong> Automated gate–outcome correlation to identify bottlenecks, such as placenta vs. embryo cleavage.</li>
-                    <li><strong>Current Metric:</strong> 0.57% mean success probability, validated against historical SCNT data.</li>
-                    <li><strong>Reproducibility:</strong> Dynamic evidence ingestion via local <code>evidence.csv</code> with machine-readable run logs.</li>
+                    <li><strong>Success Metric:</strong> Validated at a 0.57% mean success rate, aligning with historical primate SCNT benchmarks.</li>
+                    <li><strong>Uncertainty Analysis:</strong> Produces P05 / P50 / P95 bands to model biological variance.</li>
+                    <li><strong>Bottleneck Detection:</strong> Automated sensitivity correlation identifies placenta and embryo cleavage as primary failure gates.</li>
                 </ul>
             </div>
 
             <div class="project-card">
-                <span class="tag">VIRTUAL PHYSIOLOGY</span>
                 <h3>Bio-Simulation Engine (BSE)</h3>
-                <p>A modular engine for simulating physiological responses to drugs, immune triggers, and stressors.</p>
+                <p>Mechanistic PK/PD multi-organ simulator designed for AI-assisted ADMET research and virtual physiology modeling.</p>
                 <ul>
-                    <li><strong>Modeling Approach:</strong> Mechanistic multi-organ PK/PD with linked compartment flows and ADME.</li>
-                    <li><strong>Capabilities:</strong> Adjustable physiological parameters, toxicity thresholds, and live visualization of compartment states.</li>
-                    <li><strong>Scaling:</strong> Preliminary cross-species scaling (Rabbit → Human) currently under execution.</li>
+                    <li><strong>Architecture:</strong> Compartmental dynamical systems with linked fluid/tox flows.</li>
+                    <li><strong>Objective:</strong> High-fidelity simulation of drug/stressor responses to bypass traditional wet-lab friction.</li>
                 </ul>
             </div>
 
             <div class="project-card">
-                <span class="tag">DISCOVERY ENGINE</span>
                 <h3>Neural Self-Consistent System (NSCS)</h3>
-                <p>An AI-assisted framework for iterative equation discovery and refinement of mechanistic simulators.</p>
+                <p>Recursive optimization framework designed for symbolic regression and scientific equation discovery.</p>
                 <ul>
-                    <li><strong>Methodology:</strong> Recursive symbolic regression followed by neural residual correction where mechanistic forms underfit.</li>
-                    <li><strong>Optimization:</strong> Evaluates and rejects unstable candidate equations to enforce long-term simulator stability.</li>
+                    <li><strong>Discovery Logic:</strong> Iterative candidate generation with neural residual correction for long-term model stability.</li>
                 </ul>
             </div>
         </section>
 
-        <section id="anomaly">
-            <h2>Interaction Anomaly Log</h2>
-            <div class="project-card">
-                <h3>Recursive Latency Paradox</h3>
-                <p>Logged a reproducible behavioral shift during self-referential interaction patterns, where symbolic recursion correlated with measurable changes in system response timing (Saturation metric ΔΞ⁻ ≈ 0.83).</p>
-                <ul>
-                    <li><strong>Measurement Criteria:</strong> Wall-clock timestamping, token count analysis, and tail latency (p95/p99) variance monitoring.</li>
-                </ul>
+        <section id="infrastructure">
+            <h2>Laboratory Infrastructure</h2>
+            <p>All simulations and project builds are executed locally on a dedicated personal workstation to ensure data sovereignty and low-latency recursion.</p>
+            <div class="spec-box">
+                <div class="spec-item"><strong>Processor:</strong> AMD Ryzen 5 5500</div>
+                <div class="spec-item"><strong>Graphics:</strong> NVIDIA RTX 3050 (6GB)</div>
+                <div class="spec-item"><strong>Memory:</strong> 32GB RAM</div>
+                <div class="spec-item"><strong>OS:</strong> Windows 11 Home</div>
             </div>
         </section>
 
-        <section id="roadmap">
-            <h2>2026 Technical Roadmap</h2>
-            <div class="roadmap-grid">
-                <div class="roadmap-item">
-                    <strong>1. CFM v0.50</strong><br>
-                    Expand SCNT gate graph to include epigenetic reprogramming and genomic activation nodes.
-                </div>
-                <div class="roadmap-item">
-                    <strong>2. BSE Validation</strong><br>
-                    Execute multi-organ synchronization pass benchmarked against published PK curves.
-                </div>
-                <div class="roadmap-item">
-                    <strong>3. NSCS Ledger</strong><br>
-                    Formalize stability metrics and transparent reporting for discovered equation acceptance/rejection.
-                </div>
-            </div>
+        <section id="contact">
+            <h2>Contact & Engagement</h2>
+            <p>Open to technical discussions regarding non-linear problem-solving, automated scientific discovery, and biological simulation.</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:rupertbcooke1@gmail.com">rupertbcooke1@gmail.com</a></li>
+                <li><strong>Project Logs:</strong> Access live simulations via the Project IRIS Scientific Log (Google Colab).</li>
+            </ul>
         </section>
 
         <footer>
-            &copy; 2026 Rupert Cooke | Project IRIS Technical Portal | Station: Sarnia-Station-01
+            &copy; 2026 Rupert Cooke | Project IRIS Technical Portal | Station ID: SARNIA-01
         </footer>
     </div>
 </body>
