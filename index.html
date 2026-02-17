@@ -1,108 +1,644 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project IRIS | Technical Portal</title>
-    <style>
-        :root { --bg: #0d1117; --card: #161b22; --accent: #4CAF50; --border: #30363d; --text: #c9d1d9; --muted: #8b949e; --header-bg: #1f242c; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 20px; }
-        .container { max-width: 1000px; margin: auto; }
-        header { background: var(--header-bg); border: 1px solid var(--border); border-radius: 8px; padding: 30px; margin-bottom: 30px; position: relative; }
-        h1 { color: #f0f6fc; font-size: 2.2rem; margin: 0; letter-spacing: 1px; }
-        .contact-bar { font-size: 0.9rem; color: var(--muted); margin-top: 10px; display: flex; gap: 20px; flex-wrap: wrap; }
-        section { margin-bottom: 50px; }
-        h2 { color: var(--accent); font-size: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
-        .project-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 30px; margin-bottom: 25px; }
-        h3 { font-size: 1.25rem; margin-top: 0; color: #f0f6fc; border-left: 4px solid var(--accent); padding-left: 15px; }
-        .tag { display: inline-block; background: #23863622; color: var(--accent); border: 1px solid var(--accent); padding: 2px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; margin-bottom: 15px; }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 12px; }
-        strong { color: #f0f6fc; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .hardware-box { background: var(--card); border: 1px solid var(--border); padding: 20px; border-radius: 8px; }
-        .hw-item { display: flex; justify-content: space-between; border-bottom: 1px solid #30363d; padding: 8px 0; font-size: 0.9rem; }
-        footer { text-align: center; padding: 60px; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
-        a { color: var(--accent); text-decoration: none; font-weight: 500; }
-        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project IRIS | Research Portal</title>
+  <style>
+    :root{
+      --bg0:#0b0f14;
+      --bg1:#0d1117;
+      --card:#121826;
+      --card2:#0f1522;
+      --border:rgba(255,255,255,.08);
+      --border2:rgba(255,255,255,.12);
+      --text:#e6edf3;
+      --muted:#9aa4b2;
+      --muted2:#7f8a99;
+      --accent:#4CAF50;
+      --accent2:#2dd4bf;
+      --warn:#fbbf24;
+      --shadow: 0 18px 55px rgba(0,0,0,.35);
+      --shadow2: 0 8px 24px rgba(0,0,0,.35);
+      --radius: 16px;
+      --radius2: 12px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 15% 0%, rgba(76,175,80,.10), transparent 55%),
+        radial-gradient(900px 700px at 90% 20%, rgba(45,212,191,.08), transparent 52%),
+        linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 55%, #070a0f 100%);
+      line-height:1.55;
+      letter-spacing:.2px;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    a:hover{ color:var(--accent); }
+
+    .wrap{
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 18px 80px;
+    }
+
+    /* ===== Top bar ===== */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:30;
+      backdrop-filter: blur(10px);
+      background: rgba(11,15,20,.62);
+      border-bottom:1px solid var(--border);
+    }
+    .topbar-inner{
+      max-width:1120px;
+      margin:0 auto;
+      padding: 12px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width: 220px;
+    }
+    .mark{
+      width:34px;
+      height:34px;
+      border-radius:10px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(76,175,80,.35), rgba(76,175,80,.10) 60%, transparent 65%),
+        linear-gradient(135deg, rgba(45,212,191,.18), rgba(255,255,255,.04));
+      border:1px solid var(--border2);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    .brand-title{
+      display:flex; flex-direction:column; line-height:1.1;
+    }
+    .brand-title strong{
+      font-weight:800;
+      letter-spacing:1.2px;
+      font-size:.95rem;
+    }
+    .brand-title span{
+      font-size:.78rem;
+      color:var(--muted);
+    }
+
+    .nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav a{
+      font-size:.82rem;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:10px;
+      border:1px solid transparent;
+    }
+    .nav a:hover{
+      color:var(--text);
+      border-color: var(--border);
+      background: rgba(255,255,255,.03);
+    }
+
+    /* ===== Hero ===== */
+    header.hero{
+      margin-top: 18px;
+      padding: 28px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015)),
+        radial-gradient(900px 240px at 20% 0%, rgba(76,175,80,.18), transparent 65%),
+        radial-gradient(700px 260px at 95% 30%, rgba(45,212,191,.12), transparent 60%);
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items:start;
+    }
+    .hero h1{
+      margin:0;
+      font-size: 2.05rem;
+      letter-spacing: 1.6px;
+      font-weight: 900;
+    }
+    .hero p{
+      margin:10px 0 0;
+      color: var(--muted);
+      max-width: 70ch;
+      font-size: .98rem;
+    }
+
+    .badges{
+      margin-top: 14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .badge{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size:.82rem;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(76,175,80,.15);
+    }
+    .badge strong{ color: var(--text); font-weight:700; }
+
+    .hero-aside{
+      border:1px solid var(--border);
+      border-radius: var(--radius2);
+      background: rgba(10,14,20,.35);
+      padding: 14px;
+    }
+    .kv{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+      margin-top:6px;
+    }
+    .kv-row{
+      display:flex;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 10px 10px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.06);
+      background: rgba(255,255,255,.02);
+      font-size: .88rem;
+    }
+    .kv-row span:first-child{ color: var(--muted); }
+    .kv-row span:last-child{ color: var(--text); font-weight:650; }
+    .kv-row a{ color: var(--accent); font-weight:650; }
+
+    /* ===== Sections ===== */
+    section{
+      margin-top: 26px;
+      padding-top: 18px;
+    }
+    .section-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-head h2{
+      margin:0;
+      font-size: 1.05rem;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.92);
+    }
+    .section-head .hint{
+      color: var(--muted);
+      font-size: .85rem;
+      max-width: 56ch;
+      text-align:right;
+    }
+
+    /* ===== Cards ===== */
+    .cards{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .card{
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .card-inner{
+      padding: 18px 18px 16px;
+    }
+
+    .chiprow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
+      margin-bottom: 10px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(76,175,80,.35);
+      background: rgba(76,175,80,.08);
+      color: rgba(205,255,214,.92);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing:.6px;
+    }
+    .chip.secondary{
+      border-color: rgba(45,212,191,.35);
+      background: rgba(45,212,191,.08);
+      color: rgba(210,255,250,.92);
+    }
+    .chip.warn{
+      border-color: rgba(251,191,36,.35);
+      background: rgba(251,191,36,.08);
+      color: rgba(255,244,214,.95);
+    }
+    .card h3{
+      margin: 6px 0 6px;
+      font-size: 1.2rem;
+      font-weight: 850;
+      letter-spacing:.2px;
+    }
+    .card p{
+      margin: 0 0 10px;
+      color: var(--muted);
+      max-width: 90ch;
+      font-size:.95rem;
+    }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .metric{
+      border:1px solid rgba(255,255,255,.07);
+      background: rgba(255,255,255,.02);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .metric .k{
+      color: var(--muted);
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .metric .v{
+      font-size: 1.05rem;
+      font-weight: 850;
+    }
+    .metric code{
+      font-family: var(--mono);
+      font-size: .82rem;
+      color: rgba(230,237,243,.9);
+      background: rgba(0,0,0,.18);
+      border: 1px solid rgba(255,255,255,.08);
+      padding: 2px 7px;
+      border-radius: 10px;
+    }
+
+    ul{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: rgba(230,237,243,.92);
+    }
+    li{ margin: 10px 0; }
+    li strong{ color: rgba(255,255,255,.95); }
+
+    .callout{
+      margin-top: 12px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.18);
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .callout b{ color: var(--text); }
+
+    /* ===== Infra split ===== */
+    .infra{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+    }
+    .table{
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: 14px;
+      overflow:hidden;
+      background: rgba(255,255,255,.02);
+    }
+    .row{
+      display:flex;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 10px 12px;
+      border-top:1px solid rgba(255,255,255,.06);
+      font-size:.92rem;
+    }
+    .row:first-child{ border-top:none; }
+    .row span:first-child{ color: var(--muted); }
+    .row span:last-child{ font-weight: 750; }
+
+    /* ===== Footer ===== */
+    footer{
+      margin-top: 34px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+      color: var(--muted2);
+      font-size: .85rem;
+      display:flex;
+      justify-content:space-between;
+      gap: 14px;
+      flex-wrap:wrap;
+    }
+    .mono{ font-family: var(--mono); }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 920px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .infra{ grid-template-columns: 1fr; }
+      .grid2{ grid-template-columns: 1fr; }
+      .section-head{ align-items:flex-start; }
+      .section-head .hint{ text-align:left; }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <h1>PROJECT IRIS</h1>
-            <div class="contact-bar">
-                <span><strong>Lead Researcher:</strong> Rupert Cooke</span>
-                <span><strong>Station:</strong> Sarnia-01</span>
-                <span><strong>Email:</strong> <a href="mailto:rupertbcooke1@gmail.com">rupertbcooke1@gmail.com</a></span>
-            </div>
-        </header>
-
-        <section id="simulators">
-            <h2>Active Research Simulators</h2>
-            
-            <div class="project-card">
-                <span class="tag">PRODUCTION: V0.40</span>
-                <h3>Cloning Feasibility Model (CFM)</h3>
-                <p>A probabilistic gate-based model of SCNT (Somatic Cell Nuclear Transfer) designed to convert "cloning" from a qualitative concept into a formal mathematical structure.</p>
-                <ul>
-                    <li><strong>Monte Carlo Methodology:</strong> Executes 2,000 stochastic draws per benchmark, pulling parameter values from <code>evidence.csv</code> to produce P05/P50/P95 outcome distributions.</li>
-                    <li><strong>0.57% Mean Success:</strong> Current calibration point falls within historically observed ranges, validating the model against real biological constraints.</li>
-                    <li><strong>Bottleneck Detection:</strong> Utilizing a sensitivity layer to compute correlations between individual gates (e.g., placental development) and final success to guide engineering focus.</li>
-                </ul>
-            </div>
-
-            <div class="project-card">
-                <span class="tag">PROTOTYPE: PHYSIOLOGY</span>
-                <h3>Bio-Simulation Engine (BSE)</h3>
-                <p>A mechanistic "Virtual Physiology" engine representing organs as coupled dynamical systems rather than black-box models.</p>
-                <ul>
-                    <li><strong>Multi-Organ Architecture:</strong> Explicit state variables (concentration, immune activity, toxicity thresholds) for Liver, Kidney, and Target tissues linked by metabolic exchange flows.</li>
-                    <li><strong>PK/PD Modeling:</strong> Coupled ODE state evolution modeling drug absorption, distribution, and functional response (ADME).</li>
-                    <li><strong>Cross-Species Scaling:</strong> Active research phase testing <strong>Rabbit &rarr; Human</strong> allometric parameter scaling to demonstrate generalizability across biological systems.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="discovery">
-            <h2>Discovery & Optimization</h2>
-            <div class="project-card">
-                <span class="tag">LOOP: RECURSIVE</span>
-                <h3>Neural Self-Consistent System (NSCS)</h3>
-                <p>A closed-loop equation discovery system designed to improve mechanistic simulators by enforcing self-consistency between structure and observed dynamics.</p>
-                <ul>
-                    <li><strong>Symbolic Search:</strong> Utilizes regression to generate candidate governing equations (ODEs) that respect structural assumptions like conservation and monotonicity.</li>
-                    <li><strong>Neural Residual Correction:</strong> A neural network learns the delta between mechanistic predictions and observed trajectories, merging them into a final "Mechanistic + Residual" configuration.</li>
-                    <li><strong>Feedback Mechanism:</strong> Rejects unstable candidates and injects improved logic back into the BSE for iterative model refinement.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="infrastructure">
-            <h2>Laboratory Infrastructure</h2>
-            <div class="grid">
-                <div class="hardware-box">
-                    <strong>Workstation Specs (Local Execution)</strong>
-                    <p style="font-size: 0.85rem; color: var(--muted);">All CFM Monte Carlo runs and NSCS symbolic loops are executed on personal laboratory hardware.</p>
-                    <div class="hw-item"><span>CPU</span> <span>AMD Ryzen 5 5500</span></div>
-                    <div class="hw-item"><span>GPU</span> <span>NVIDIA RTX 3050 (6GB)</span></div>
-                    <div class="hw-item"><span>RAM</span> <span>32 GB DDR4</span></div>
-                    <div class="hw-item"><span>OS</span> <span>Windows 11 Home</span></div>
-                </div>
-                <div class="hardware-box">
-                    <strong>Operational Advantages</strong>
-                    <ul>
-                        <li style="font-size: 0.85rem;"><strong>Data Sovereignty:</strong> Local simulation cycles without cloud dependency.</li>
-                        <li style="font-size: 0.85rem;"><strong>Neural Acceleration:</strong> GPU-driven residual model training for the NSCS framework.</li>
-                        <li style="font-size: 0.85rem;"><strong>Rapid Prototyping:</strong> Local ODE integration and pre-processing for same-day iteration.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            &copy; 2026 Rupert Cooke | Project IRIS Technical Portal | Reproducibility Standard: MSRR-Compliant
-        </footer>
+  <!-- Sticky top nav -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="mark" aria-hidden="true"></div>
+        <div class="brand-title">
+          <strong>PROJECT IRIS</strong>
+          <span>Research Portal · Technical Track</span>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#simulators">Simulators</a>
+        <a href="#discovery">Discovery</a>
+        <a href="#benchmark">CFM v0.40</a>
+        <a href="#infrastructure">Infrastructure</a>
+      </nav>
     </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-grid">
+        <div>
+          <h1>PROJECT IRIS</h1>
+          <p>
+            A reproducibility-first research stack for mechanistic biology simulation and closed-loop model discovery.
+            Current focus: SCNT feasibility modeling (CFM v0.40), multi-organ PK/PD virtual physiology (BSE),
+            and iterative equation refinement via NSCS.
+          </p>
+
+          <div class="badges">
+            <span class="badge"><span class="dot"></span> Status: <strong>Active Development</strong></span>
+            <span class="badge">Station: <strong>Sarnia-01</strong></span>
+            <span class="badge">Standard: <strong>MSRR-Compliant</strong></span>
+          </div>
+        </div>
+
+        <aside class="hero-aside">
+          <div style="color:rgba(255,255,255,.9); font-weight:850; letter-spacing:.6px;">Lab Contact</div>
+          <div class="kv">
+            <div class="kv-row"><span>Lead Researcher</span><span>Rupert Cooke</span></div>
+            <div class="kv-row"><span>Email</span><span><a href="mailto:rupertbcooke1@gmail.com">rupertbcooke1@gmail.com</a></span></div>
+            <div class="kv-row"><span>Portal</span><span class="mono">v2026.02</span></div>
+          </div>
+          <div class="callout" style="margin-top:12px;">
+            <b>Reproducibility note:</b> Benchmarks are parameterized from <span class="mono">evidence.csv</span>,
+            executed as versioned runs, and summarized by uncertainty bands.
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <!-- Simulators -->
+    <section id="simulators">
+      <div class="section-head">
+        <h2>Active Research Simulators</h2>
+        <div class="hint">Production-calibrated modeling + prototype physiology engine (mechanistic-first).</div>
+      </div>
+
+      <div class="cards">
+
+        <!-- CFM Card -->
+        <article class="card" id="benchmark">
+          <div class="card-inner">
+            <div class="chiprow">
+              <span class="chip">PRODUCTION · CFM v0.40</span>
+              <span class="badge">Domain: <strong>SCNT feasibility</strong></span>
+            </div>
+
+            <h3>Cloning Feasibility Model (CFM)</h3>
+            <p>
+              Probabilistic gate-based model of SCNT (Somatic Cell Nuclear Transfer) that formalizes end-to-end cloning feasibility
+              as a composition of biological stage constraints with uncertainty quantification.
+            </p>
+
+            <div class="grid2">
+              <div class="metric">
+                <div class="k">Benchmark Method</div>
+                <div class="v">Monte Carlo (2,000 draws)</div>
+                <div style="margin-top:6px; color:var(--muted); font-size:.88rem;">
+                  Parameter vectors sampled from <code>evidence.csv</code> → outcome distribution → P05/P50/P95 bands.
+                </div>
+              </div>
+              <div class="metric">
+                <div class="k">Current Calibration</div>
+                <div class="v">0.57% mean success probability</div>
+                <div style="margin-top:6px; color:var(--muted); font-size:.88rem;">
+                  Scientifically significant baseline because it matches historically constrained feasibility (not optimistic priors).
+                </div>
+              </div>
+            </div>
+
+            <ul>
+              <li><strong>Gate structure:</strong> SCNT decomposed into stage-wise gates (e.g., reprogramming, cleavage, implantation, placental development) to expose where variance accumulates.</li>
+              <li><strong>Sensitivity layer:</strong> Computes gate–outcome associations across draws to identify the strongest bottlenecks (targets for intervention and model refinement).</li>
+              <li><strong>Outputs:</strong> Full outcome distribution + uncertainty bands (P05/P50/P95) suitable for reporting and regression tests across versions.</li>
+            </ul>
+
+            <div class="callout">
+              <b>Why 0.57% matters:</b> It’s a calibration anchor that demonstrates the model is constrained by realistic failure rates.
+              This makes downstream improvements (new gates, stronger priors, intervention models) measurable and falsifiable.
+            </div>
+          </div>
+        </article>
+
+        <!-- BSE Card -->
+        <article class="card">
+          <div class="card-inner">
+            <div class="chiprow">
+              <span class="chip secondary">PROTOTYPE · VIRTUAL PHYSIOLOGY</span>
+              <span class="badge">Domain: <strong>Multi-organ PK/PD</strong></span>
+            </div>
+
+            <h3>Bio-Simulation Engine (BSE)</h3>
+            <p>
+              Mechanistic “Virtual Physiology” engine modeling organs as coupled dynamical systems (compartments with explicit
+              state variables) rather than black-box predictors.
+            </p>
+
+            <ul>
+              <li><strong>Architecture:</strong> Multi-compartment PK/PD with explicit state evolution per organ (concentration, binding fraction, immune activity, toxicity thresholds).</li>
+              <li><strong>Coupling:</strong> Inter-organ flows model distribution and exchange (circulation-driven transport + organ-specific transformation/clearance).</li>
+              <li><strong>ADME backbone:</strong> Absorption, distribution, metabolism, excretion encoded as parameterized transfer/clearance operators across compartments.</li>
+              <li><strong>Modularity:</strong> Organ plug-ins enable incremental scope growth (add organs, immune overlays, toxicity models) without rewriting the core solver.</li>
+              <li><strong>Current experiment:</strong> <strong>Rabbit → Human scaling tests</strong> using physiology/allometric transformations of organ volumes, flow rates, and clearance constants to evaluate cross-species generalizability.</li>
+            </ul>
+
+            <div class="callout">
+              <b>Rabbit → Human test goal:</b> preserve mechanistic structure while transforming parameters; compare predicted dynamics to known curve shapes/constraints to validate portability of the simulator.
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Discovery -->
+    <section id="discovery">
+      <div class="section-head">
+        <h2>Discovery & Optimization</h2>
+        <div class="hint">Closed-loop equation search + residual stabilization to improve mechanistic simulators.</div>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-inner">
+            <div class="chiprow">
+              <span class="chip">LOOP · NSCS</span>
+              <span class="badge">Mode: <strong>Mechanistic + Residual</strong></span>
+            </div>
+
+            <h3>Neural Self-Consistent System (NSCS)</h3>
+            <p>
+              Closed-loop model discovery framework that ingests time-series trajectories, proposes symbolic candidates,
+              rejects unstable forms, and applies neural residual correction to improve stability and predictive fidelity.
+            </p>
+
+            <div class="grid2">
+              <div class="metric">
+                <div class="k">Input</div>
+                <div class="v">Time-series trajectories</div>
+                <div style="margin-top:6px; color:var(--muted); font-size:.88rem;">
+                  Simulator outputs (e.g., BSE organ trajectories) or experimental curves.
+                </div>
+              </div>
+              <div class="metric">
+                <div class="k">Output</div>
+                <div class="v">Selected governing form</div>
+                <div style="margin-top:6px; color:var(--muted); font-size:.88rem;">
+                  Best candidate equation + residual term (if needed) + audit trail.
+                </div>
+              </div>
+            </div>
+
+            <ul>
+              <li><strong>1) Ingest:</strong> read trajectories (states over time), normalize channels, define target variables and candidate feature library.</li>
+              <li><strong>2) Symbolic candidate generation:</strong> generate ODE candidates via constrained symbolic regression / structured search (candidate families, parameter sweeps).</li>
+              <li><strong>3) Score + reject:</strong> evaluate candidates on fit + stability (e.g., exploding/oscillatory divergence, nonphysical trends) and discard unstable solutions.</li>
+              <li><strong>4) Residual correction:</strong> train a neural residual model Δ(t, x) to learn the mismatch between mechanistic candidate predictions and observed trajectories.</li>
+              <li><strong>5) Compose:</strong> final model = mechanistic form + residual correction (only if it improves stability/generalization) with versioned metrics.</li>
+              <li><strong>6) Feedback:</strong> inject improved equation/parameters back into BSE to iteratively refine the simulator under the same evaluation protocol.</li>
+            </ul>
+
+            <div class="callout">
+              <b>Why residuals:</b> preserves interpretability of the mechanistic backbone while absorbing unmodeled dynamics
+              (measurement artifacts, omitted nonlinearities, hidden coupling terms) in a controlled, testable way.
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Infrastructure -->
+    <section id="infrastructure">
+      <div class="section-head">
+        <h2>Laboratory Infrastructure</h2>
+        <div class="hint">Local execution for iteration speed + optional Colab for portable benchmarking.</div>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-inner">
+            <div class="infra">
+              <div>
+                <div class="chiprow" style="margin-bottom:8px;">
+                  <span class="chip secondary">LOCAL WORKSTATION</span>
+                </div>
+                <h3 style="margin-top:4px;">Compute Environment</h3>
+                <p>
+                  Primary local system used for Monte Carlo benchmarks, ODE integration, and GPU-accelerated neural residual training.
+                  Enables rapid iteration without cloud dependency.
+                </p>
+
+                <div class="table">
+                  <div class="row"><span>CPU</span><span>AMD Ryzen 5 5500</span></div>
+                  <div class="row"><span>GPU</span><span>NVIDIA RTX 3050</span></div>
+                  <div class="row"><span>RAM</span><span>32 GB DDR4</span></div>
+                  <div class="row"><span>OS</span><span>Windows 11</span></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="chiprow" style="margin-bottom:8px;">
+                  <span class="chip">ROLE IN PIPELINE</span>
+                </div>
+                <h3 style="margin-top:4px;">Operational Advantages</h3>
+                <ul>
+                  <li><strong>Iteration speed:</strong> same-day tuning of priors, gates, and physiology parameters.</li>
+                  <li><strong>GPU acceleration:</strong> faster neural residual training for NSCS stability correction.</li>
+                  <li><strong>Reproducibility:</strong> consistent local environment for versioned benchmarks and regression tests.</li>
+                  <li><strong>Portability:</strong> Colab notebooks can mirror benchmark runs for shareable scientific logs.</li>
+                </ul>
+                <div class="callout">
+                  <b>Engineering posture:</b> local-first development + notebook-based logs for transparency and replication.
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <div>© 2026 Rupert Cooke · Project IRIS Research Portal</div>
+      <div class="mono">Reproducibility Standard: MSRR-Compliant · Build: v2026.02</div>
+    </footer>
+  </div>
 </body>
 </html>
