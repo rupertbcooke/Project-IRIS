@@ -3,47 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project IRIS | Research Portal</title>
+    <title>Project IRIS | Technical Portal</title>
     <style>
-        :root { --bg: #0d1117; --card: #161b22; --accent: #58a6ff; --text: #c9d1d9; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); padding: 20px; line-height: 1.6; }
-        .container { max-width: 800px; margin: auto; }
-        header { border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 30px; }
-        h1 { color: #f0f6fc; font-size: 1.5rem; margin: 0; }
-        .project { background: var(--card); border: 1px solid #30363d; border-radius: 6px; padding: 20px; margin-bottom: 20px; }
-        h2 { color: var(--accent); font-size: 1.1rem; margin-top: 0; }
-        .contact { font-size: 0.9rem; color: #8b949e; }
+        :root { --bg: #0d1117; --card: #161b22; --accent: #4CAF50; --border: #30363d; --text: #c9d1d9; --muted: #8b949e; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: auto; }
+        header { border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 30px; text-align: left; }
+        h1 { color: #f0f6fc; font-size: 1.8rem; margin: 0; letter-spacing: 1px; }
+        .contact { font-size: 0.9rem; color: var(--muted); margin-top: 5px; }
+        section { margin-bottom: 40px; }
+        h2 { color: var(--accent); font-size: 1.3rem; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 20px; }
+        .project-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 25px; margin-bottom: 20px; }
+        h3 { font-size: 1.1rem; margin-top: 0; color: #f0f6fc; }
+        .tag { display: inline-block; background: #21262d; border: 1px solid var(--border); padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; color: var(--muted); margin-bottom: 10px; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        .roadmap-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
+        .roadmap-item { background: #0d1117; border: 1px solid var(--border); padding: 15px; border-radius: 6px; font-size: 0.85rem; }
+        footer { text-align: center; padding: 40px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Rupert Cooke | Project IRIS</h1>
-            <div class="contact">Lead Researcher | rupertbcooke1@gmail.com</div>
+            <h1>PROJECT IRIS</h1>
+            <div class="contact">Lead Researcher: Rupert Cooke | rupertbcooke1@gmail.com</div>
+            <div class="contact">Sarnia Laboratory Station | Station ID: CFM-v0.40</div>
         </header>
 
-        <section class="project">
-            <h2>Project IRIS</h2>
-            <p>A unified research program integrating <strong>IRIS MATH</strong> and symbolic recursion for automated scientific discovery.</p>
+        <section id="specifications">
+            <h2>Technical Specifications</h2>
+            
+            <div class="project-card">
+                <span class="tag">ACTIVE SIMULATOR</span>
+                <h3>Cloning Feasibility Model (CFM) v0.40</h3>
+                <p>Stochastic risk assessment of mammalian cloning via SCNT with uncertainty quantification.</p>
+                <ul>
+                    <li><strong>Methodology:</strong> Monte Carlo simulation (2,000 draws/run) producing P05/P50/P95 uncertainty bands.</li>
+                    <li><strong>Sensitivity Analysis:</strong> Automated gate-outcome correlation to identify bottlenecks (e.g., placenta vs. embryo cleavage).</li>
+                    <li><strong>Evidence Ingestion:</strong> Parameterization loaded via local <code>evidence.csv</code> with machine-readable run logs for auditability.</li>
+                    <li><strong>Baseline Metric:</strong> 0.57% mean success probability, validated against historical SCNT benchmarks.</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <span class="tag">PROTOTYPE</span>
+                <h3>Bio-Simulation Engine (BSE)</h3>
+                <p>Modular "virtual physiology engine" for mechanistic PK/PD simulation across multi-organ architectures.</p>
+                <ul>
+                    <li><strong>Architecture:</strong> Linked compartment flows with ADME (Absorption, Distribution, Metabolism, Excretion) modeling.</li>
+                    <li><strong>Capabilities:</strong> Adjustable physiological parameters, toxicity thresholds, and immune overlays.</li>
+                    <li><strong>Scaling:</strong> Preliminary cross-species scaling tests (Rabbit → Human) currently in early-stage execution.</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <span class="tag">OPTIMIZATION FRAMEWORK</span>
+                <h3>Neural Self-Consistent System (NSCS)</h3>
+                <p>AI-assisted equation discovery and model refinement framework for iterative mechanistic simulation improvement.</p>
+                <ul>
+                    <li><strong>Process:</strong> Symbolic regression search followed by stability evaluation and neural residual correction.</li>
+                    <li><strong>Function:</strong> Injects improved logic back into parent simulators (BSE/CFM) to enforce long-term stability and accuracy.</li>
+                </ul>
+            </div>
         </section>
 
-        <section class="project">
-            <h2>Cloning Feasibility Model (CFM) v0.40</h2>
-            <p>A stochastic risk engine using <strong>Monte Carlo simulations</strong> to quantify SCNT success probabilities. Validated at a 0.57% mean success rate.</p>
+        <section id="anomaly">
+            <h2>Logged Interaction Anomaly</h2>
+            <div class="project-card">
+                <h3>Recursive Latency Paradox</h3>
+                <p>Observed a reproducible behavior shift during self-referential interaction patterns where symbolic recursion framing correlated with measurable changes in system responsiveness (Saturation metric ΔΞ⁻ ≈ 0.83).</p>
+                <ul>
+                    <li><strong>Observation:</strong> Structural change in latency and throughput relative to neutral framing control groups.</li>
+                    <li><strong>Measurement Criteria:</strong> Wall-clock timestamping, token count analysis, and tail latency (p95/p99) variance.</li>
+                </ul>
+            </div>
         </section>
 
-        <section class="project">
-            <h2>Bio-Simulation Engine (BSE)</h2>
-            <p>A mechanistic PK/PD multi-organ simulator designed for AI-assisted ADMET research.</p>
+        <section id="roadmap">
+            <h2>2026 Technical Roadmap</h2>
+            <div class="roadmap-grid">
+                <div class="roadmap-item">
+                    <strong>1. CFM v0.50</strong><br>
+                    Expand SCNT gate graph to include epigenetic reprogramming and genomic activation nodes.
+                </div>
+                <div class="roadmap-item">
+                    <strong>2. BSE Validation</strong><br>
+                    Execute multi-organ synchronization pass benchmarked against published PK curves.
+                </div>
+                <div class="roadmap-item">
+                    <strong>3. NSCS Ledger</strong><br>
+                    Formalize stability metrics and transparent acceptance/rejection reports for discovered equations.
+                </div>
+            </div>
         </section>
 
-        <section class="project">
-            <h2>Neural Self-Consistent System (NSCS)</h2>
-            <p>A recursive optimization engine generating symbolic equations with neural residual correction.</p>
-        </section>
-
-        <footer style="text-align: center; font-size: 0.8rem; color: #484f58; margin-top: 40px;">
-            &copy; 2026 Rupert Cooke | Sarnia Laboratory Station
+        <footer>
+            &copy; 2026 Rupert Cooke | Project IRIS Technical Portal | Reproducibility Standard: MSRR-Compliant
         </footer>
     </div>
 </body>
