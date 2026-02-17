@@ -1,0 +1,2 @@
+run_id,date_utc,dataset_version,model_version,seed,auc,prauc,f1,notes
+FRB-0001,2026-02-16,cat_v1,model_v1,42,,,,"placeholder — replace with real run metrics"
