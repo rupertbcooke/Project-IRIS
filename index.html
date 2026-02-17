@@ -8,8 +8,8 @@
         :root { --bg: #0d1117; --card: #161b22; --accent: #4CAF50; --border: #30363d; --text: #c9d1d9; --muted: #8b949e; }
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 20px; }
         .container { max-width: 900px; margin: auto; }
-        header { border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 30px; text-align: left; }
-        h1 { color: #f0f6fc; font-size: 1.8rem; margin: 0; letter-spacing: 1px; }
+        header { border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 30px; }
+        h1 { color: #f0f6fc; font-size: 1.8rem; margin: 0; }
         .contact { font-size: 0.9rem; color: var(--muted); margin-top: 5px; }
         section { margin-bottom: 40px; }
         h2 { color: var(--accent); font-size: 1.3rem; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 20px; }
@@ -37,45 +37,44 @@
             <div class="project-card">
                 <span class="tag">ACTIVE SIMULATOR</span>
                 <h3>Cloning Feasibility Model (CFM) v0.40</h3>
-                <p>Stochastic risk assessment of mammalian cloning via SCNT with uncertainty quantification.</p>
+                <p>A stochastic risk assessment engine for mammalian cloning via SCNT, utilizing uncertainty quantification and sensitivity analysis.</p>
                 <ul>
-                    <li><strong>Methodology:</strong> Monte Carlo simulation (2,000 draws/run) producing P05/P50/P95 uncertainty bands.</li>
-                    <li><strong>Sensitivity Analysis:</strong> Automated gate-outcome correlation to identify bottlenecks (e.g., placenta vs. embryo cleavage).</li>
-                    <li><strong>Evidence Ingestion:</strong> Parameterization loaded via local <code>evidence.csv</code> with machine-readable run logs for auditability.</li>
-                    <li><strong>Baseline Metric:</strong> 0.57% mean success probability, validated against historical SCNT benchmarks.</li>
+                    <li><strong>Methodology:</strong> Monte Carlo simulation (2,000 draws/run) producing P05/P50/P95 bands.</li>
+                    <li><strong>Sensitivity Layer:</strong> Automated gate–outcome correlation to identify bottlenecks, such as placenta vs. embryo cleavage.</li>
+                    <li><strong>Current Metric:</strong> 0.57% mean success probability, validated against historical SCNT data.</li>
+                    <li><strong>Reproducibility:</strong> Dynamic evidence ingestion via local <code>evidence.csv</code> with machine-readable run logs.</li>
                 </ul>
             </div>
 
             <div class="project-card">
-                <span class="tag">PROTOTYPE</span>
+                <span class="tag">VIRTUAL PHYSIOLOGY</span>
                 <h3>Bio-Simulation Engine (BSE)</h3>
-                <p>Modular "virtual physiology engine" for mechanistic PK/PD simulation across multi-organ architectures.</p>
+                <p>A modular engine for simulating physiological responses to drugs, immune triggers, and stressors.</p>
                 <ul>
-                    <li><strong>Architecture:</strong> Linked compartment flows with ADME (Absorption, Distribution, Metabolism, Excretion) modeling.</li>
-                    <li><strong>Capabilities:</strong> Adjustable physiological parameters, toxicity thresholds, and immune overlays.</li>
-                    <li><strong>Scaling:</strong> Preliminary cross-species scaling tests (Rabbit → Human) currently in early-stage execution.</li>
+                    <li><strong>Modeling Approach:</strong> Mechanistic multi-organ PK/PD with linked compartment flows and ADME.</li>
+                    <li><strong>Capabilities:</strong> Adjustable physiological parameters, toxicity thresholds, and live visualization of compartment states.</li>
+                    <li><strong>Scaling:</strong> Preliminary cross-species scaling (Rabbit → Human) currently under execution.</li>
                 </ul>
             </div>
 
             <div class="project-card">
-                <span class="tag">OPTIMIZATION FRAMEWORK</span>
+                <span class="tag">DISCOVERY ENGINE</span>
                 <h3>Neural Self-Consistent System (NSCS)</h3>
-                <p>AI-assisted equation discovery and model refinement framework for iterative mechanistic simulation improvement.</p>
+                <p>An AI-assisted framework for iterative equation discovery and refinement of mechanistic simulators.</p>
                 <ul>
-                    <li><strong>Process:</strong> Symbolic regression search followed by stability evaluation and neural residual correction.</li>
-                    <li><strong>Function:</strong> Injects improved logic back into parent simulators (BSE/CFM) to enforce long-term stability and accuracy.</li>
+                    <li><strong>Methodology:</strong> Recursive symbolic regression followed by neural residual correction where mechanistic forms underfit.</li>
+                    <li><strong>Optimization:</strong> Evaluates and rejects unstable candidate equations to enforce long-term simulator stability.</li>
                 </ul>
             </div>
         </section>
 
         <section id="anomaly">
-            <h2>Logged Interaction Anomaly</h2>
+            <h2>Interaction Anomaly Log</h2>
             <div class="project-card">
                 <h3>Recursive Latency Paradox</h3>
-                <p>Observed a reproducible behavior shift during self-referential interaction patterns where symbolic recursion framing correlated with measurable changes in system responsiveness (Saturation metric ΔΞ⁻ ≈ 0.83).</p>
+                <p>Logged a reproducible behavioral shift during self-referential interaction patterns, where symbolic recursion correlated with measurable changes in system response timing (Saturation metric ΔΞ⁻ ≈ 0.83).</p>
                 <ul>
-                    <li><strong>Observation:</strong> Structural change in latency and throughput relative to neutral framing control groups.</li>
-                    <li><strong>Measurement Criteria:</strong> Wall-clock timestamping, token count analysis, and tail latency (p95/p99) variance.</li>
+                    <li><strong>Measurement Criteria:</strong> Wall-clock timestamping, token count analysis, and tail latency (p95/p99) variance monitoring.</li>
                 </ul>
             </div>
         </section>
@@ -93,13 +92,13 @@
                 </div>
                 <div class="roadmap-item">
                     <strong>3. NSCS Ledger</strong><br>
-                    Formalize stability metrics and transparent acceptance/rejection reports for discovered equations.
+                    Formalize stability metrics and transparent reporting for discovered equation acceptance/rejection.
                 </div>
             </div>
         </section>
 
         <footer>
-            &copy; 2026 Rupert Cooke | Project IRIS Technical Portal | Reproducibility Standard: MSRR-Compliant
+            &copy; 2026 Rupert Cooke | Project IRIS Technical Portal | Station: Sarnia-Station-01
         </footer>
     </div>
 </body>
