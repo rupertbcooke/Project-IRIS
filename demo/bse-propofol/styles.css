@@ -1,0 +1,178 @@
+:root {
+  --primary: #2563eb;
+  --bg: #0b1220;
+  --panel: #111a2e;
+  --panel2: #0f172a;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --border: rgba(255,255,255,0.10);
+  --danger-bg: rgba(239,68,68,0.14);
+  --danger: #fecaca;
+  --shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  background: radial-gradient(1200px 600px at 20% 0%, #162447 0%, var(--bg) 50%);
+  color: var(--text);
+  padding: 20px;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+header {
+  margin-bottom: 16px;
+}
+
+h1 {
+  margin: 0 0 4px 0;
+  font-size: 28px;
+}
+
+.subtitle {
+  margin: 0 0 12px 0;
+  color: var(--muted);
+}
+
+.disclaimer {
+  background: var(--danger-bg);
+  border: 1px solid rgba(239,68,68,0.25);
+  color: var(--danger);
+  padding: 12px 14px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  line-height: 1.35;
+}
+
+.disclaimer .cite, .disclaimer .assumptions {
+  margin-top: 6px;
+  color: rgba(254,202,202,0.9);
+  font-size: 13px;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 16px;
+}
+
+.panel {
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel2) 100%);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.controls h2 { margin-top: 0; }
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.slider-group {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.slider-group label {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.slider-group .hint {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+input[type="range"] {
+  width: 100%;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 14px 0;
+}
+
+.constants h3 {
+  margin: 12px 0 6px 0;
+  font-size: 14px;
+  color: rgba(229,231,235,0.9);
+}
+
+.constants ul {
+  margin: 6px 0 0 16px;
+  padding: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.viz .plot {
+  width: 100%;
+  height: 420px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.25);
+}
+
+.metrics {
+  margin: 12px 0 14px 0;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.03);
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.metric-box {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px;
+  background: rgba(0,0,0,0.18);
+  text-align: center;
+}
+
+.metric-label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.metric-value {
+  font-size: 22px;
+  font-weight: 800;
+  color: #93c5fd;
+  margin-top: 6px;
+}
+
+.footnote {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+@media (max-width: 1100px) {
+  .main { grid-template-columns: 1fr; }
+  .row { grid-template-columns: 1fr; }
+  .viz .plot { height: 380px; }
+}
