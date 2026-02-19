@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BSE Demo — Propofol (Marsh 3-Compartment PK)</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>BSE Interactive PK Demo</h1>
+      <p class="subtitle">Propofol — Marsh 3-Compartment Model (1991)</p>
+
+      <div class="disclaimer">
+        <strong>Disclaimer:</strong> This is a public, literature-parameterized pharmacokinetic (PK) demonstrator for educational and research communication only.
+        It is <strong>not</strong> medical advice, <strong>not</strong> a clinical dosing tool, and <strong>not</strong> validated for patient care.
+        Do not use for treatment decisions.
+        <div class="cite">
+          Model: Marsh et al., <em>British Journal of Anaesthesia</em> (1991) — “Pharmacokinetic requirements for propofol.”
+        </div>
+        <div class="assumptions">
+          Assumptions: linear first-order kinetics; instantaneous central mixing; adult weight scaling of volumes; no age/lean-body-mass adjustment; not reliable for extremes (e.g., morbid obesity).
+        </div>
+      </div>
+    </header>
+
+    <div class="main">
+      <section class="panel controls">
+        <h2>Controls</h2>
+
+        <div class="row">
+          <div class="slider-group">
+            <label>Weight (kg) <span id="val_weight">70</span></label>
+            <input type="range" id="weight" min="35" max="140" step="1" value="70" />
+            <div class="hint">Marsh volumes scale with weight.</div>
+          </div>
+
+          <div class="slider-group">
+            <label>Bolus dose (mg) <span id="val_bolus_mg">150</span></label>
+            <input type="range" id="bolus_mg" min="0" max="500" step="5" value="150" />
+            <div class="hint">Instantaneous dose into central compartment.</div>
+          </div>
+        </div>
+
+        <hr/>
+
+        <div class="row">
+          <div class="slider-group">
+            <label>Infusion rate (mg/min) <span id="val_infusion_mg_min">0</span></label>
+            <input type="range" id="infusion_mg_min" min="0" max="20" step="0.1" value="0" />
+            <div class="hint">Optional constant infusion.</div>
+          </div>
+
+          <div class="slider-group">
+            <label>Infusion duration (min) <span id="val_infusion_duration_min">0</span></label>
+            <input type="range" id="infusion_duration_min" min="0" max="240" step="5" value="0" />
+            <div class="hint">Infusion stops after this time.</div>
+          </div>
+        </div>
+
+        <hr/>
+
+        <div class="row">
+          <div class="slider-group">
+            <label>Sim time (min) <span id="val_t_end_min">240</span></label>
+            <input type="range" id="t_end_min" min="30" max="720" step="10" value="240" />
+          </div>
+
+          <div class="slider-group">
+            <label>dt (min) <span id="val_dt_min">0.2</span></label>
+            <input type="range" id="dt_min" min="0.02" max="1.0" step="0.02" value="0.2" />
+            <div class="hint">Guardrails auto-adjust if too many steps.</div>
+          </div>
+        </div>
+
+        <hr/>
+
+        <div class="constants">
+          <h3>Model constants (Marsh micro-rate constants)</h3>
+          <ul>
+            <li><code>k10</code> = 0.119 min⁻¹ (elimination from central)</li>
+            <li><code>k12</code> = 0.112 min⁻¹, <code>k21</code> = 0.055 min⁻¹</li>
+            <li><code>k13</code> = 0.042 min⁻¹, <code>k31</code> = 0.0033 min⁻¹</li>
+          </ul>
+
+          <h3>Volumes (L/kg)</h3>
+          <ul>
+            <li><code>V1</code> = 0.228 L/kg (central)</li>
+            <li><code>V2</code> = 0.463 L/kg (fast peripheral)</li>
+            <li><code>V3</code> = 2.893 L/kg (slow peripheral)</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel viz">
+        <div id="plot_c1" class="plot"></div>
+        <div class="metrics">
+          <h3>Plasma (Central) Metrics — C1</h3>
+          <div class="metric-grid">
+            <div class="metric-box">
+              <div class="metric-label">C<sub>max</sub> (mg/L)</div>
+              <div class="metric-value" id="out_cmax">—</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">T<sub>max</sub> (min)</div>
+              <div class="metric-value" id="out_tmax">—</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">AUC(0–t) (mg·min/L)</div>
+              <div class="metric-value" id="out_auc">—</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="plot_amounts" class="plot"></div>
+        <div class="footnote">
+          Output is deterministic (RK4). Concentration: C1 = A1 / (V1·Weight).
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="bse_pk.js"></script>
+</body>
+</html>
