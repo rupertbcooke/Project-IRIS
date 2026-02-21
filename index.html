@@ -7,8 +7,8 @@
 
   <style>
     :root{
-      --bg0:#0b0f14;
-      --bg1:#0d1117;
+      --bg0:#070a10;
+      --bg1:#0b0f18;
       --card:#121826;
       --card2:#0f1522;
       --border:rgba(255,255,255,.08);
@@ -16,15 +16,19 @@
       --text:#e6edf3;
       --muted:#9aa4b2;
       --muted2:#7f8a99;
+
       --accent:#4CAF50;
       --accent2:#2dd4bf;
       --warn:#fbbf24;
-      --titleBlue:#86a7ff;      
-      --neonBlue:#20d7ff;       
+
+      --titleBlue:#86a7ff;
+      --neonBlue:#20d7ff;
+
       --shadow: 0 18px 55px rgba(0,0,0,.35);
       --shadow2: 0 8px 24px rgba(0,0,0,.35);
       --radius: 16px;
       --radius2: 12px;
+
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
@@ -32,14 +36,16 @@
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
 
+    /* ===== Site background (REMOVED green wash; replaced with space/cool nebula) ===== */
     body{
       margin:0;
       font-family:var(--sans);
       color:var(--text);
       background:
-        radial-gradient(1200px 800px at 15% 0%, rgba(76,175,80,.10), transparent 55%),
-        radial-gradient(900px 700px at 90% 20%, rgba(45,212,191,.08), transparent 52%),
-        linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 55%, #070a0f 100%);
+        radial-gradient(1100px 760px at 14% 2%, rgba(32,215,255,.07), transparent 58%),
+        radial-gradient(900px 700px at 86% 22%, rgba(134,167,255,.06), transparent 55%),
+        radial-gradient(700px 600px at 55% 92%, rgba(255,255,255,.03), transparent 60%),
+        linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 55%, #05070c 100%);
       line-height:1.55;
       letter-spacing:.2px;
     }
@@ -79,7 +85,7 @@
       min-width: 260px;
     }
 
-    /* ===== Neutron Star Mark ===== */
+    /* ===== Neutron Star Mark (smaller orbit-square, wider orbit, faster 360) ===== */
     .mark{
       width:34px;
       height:34px;
@@ -104,7 +110,6 @@
         radial-gradient(circle at 70% 60%, rgba(255,255,255,.06), transparent 22%),
         radial-gradient(circle at 60% 20%, rgba(32,215,255,.10), transparent 24%),
         radial-gradient(circle at 30% 70%, rgba(32,215,255,.08), transparent 26%);
-      filter: blur(0.2px);
       opacity:.55;
       transform: rotate(12deg);
       pointer-events:none;
@@ -118,7 +123,11 @@
       height:10px;
       transform: translate(-50%,-50%);
       border-radius:999px;
-      background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.95), var(--neonBlue) 45%, rgba(32,215,255,.25) 70%, transparent 76%);
+      background: radial-gradient(circle at 35% 30%,
+        rgba(255,255,255,.95),
+        var(--neonBlue) 45%,
+        rgba(32,215,255,.25) 70%,
+        transparent 76%);
       box-shadow:
         0 0 12px rgba(32,215,255,.75),
         0 0 26px rgba(32,215,255,.35);
@@ -142,36 +151,43 @@
       transform: translate(-50%,-50%) rotate(90deg);
     }
 
+    /* bigger orbit radius + faster spin */
     .mark .orbit{
       position:absolute;
       left:50%;
       top:50%;
-      width:22px;
-      height:22px;
+      width:28px;          /* was 22 */
+      height:28px;         /* was 22 */
       transform: translate(-50%,-50%);
       pointer-events:none;
-      animation: orbitSpin 2.8s linear infinite;
+      animation: orbitSpin 1.6s linear infinite;  /* was 2.8s */
     }
 
+    /* smaller orbiting square */
     .mark .orbit::before{
       content:"";
       position:absolute;
       left:50%;
-      top:-2px;
-      width:7px;
-      height:7px;
+      top:-3px;            /* slightly above ring */
+      width:5px;           /* was 7 */
+      height:5px;          /* was 7 */
       transform: translateX(-50%);
       border-radius:2px;
       background: rgba(255,255,255,.10);
-      border: 1px solid rgba(32,215,255,.55);
+      border: 1px solid rgba(32,215,255,.62);
       box-shadow:
-        0 0 10px rgba(32,215,255,.35),
+        0 0 10px rgba(32,215,255,.40),
         inset 0 0 6px rgba(32,215,255,.15);
     }
 
     @keyframes orbitSpin{
       from{ transform: translate(-50%,-50%) rotate(0deg); }
       to{ transform: translate(-50%,-50%) rotate(360deg); }
+    }
+
+    /* Accessibility: respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .mark .orbit{ animation: none; }
     }
 
     .brand-title{
@@ -215,10 +231,13 @@
       padding: 28px;
       border-radius: var(--radius);
       border: 1px solid var(--border);
+
+      /* remove the green-ish wash in hero too */
       background:
         linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015)),
-        radial-gradient(900px 240px at 20% 0%, rgba(76,175,80,.18), transparent 65%),
-        radial-gradient(700px 260px at 95% 30%, rgba(45,212,191,.12), transparent 60%);
+        radial-gradient(900px 260px at 18% 0%, rgba(32,215,255,.10), transparent 62%),
+        radial-gradient(720px 280px at 95% 30%, rgba(134,167,255,.09), transparent 60%);
+
       box-shadow: var(--shadow);
       position:relative;
       overflow:hidden;
@@ -399,11 +418,7 @@
       background: rgba(45,212,191,.08);
       color: rgba(210,255,250,.92);
     }
-    .chip.warn{
-      border-color: rgba(251,191,36,.35);
-      background: rgba(251,191,36,.08);
-      color: rgba(255,244,214,.95);
-    }
+
     .card h3{
       margin: 6px 0 6px;
       font-size: 1.2rem;
