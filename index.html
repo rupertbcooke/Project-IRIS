@@ -9,26 +9,38 @@
     :root{
       --bg0:#0b0f14;
       --bg1:#0d1117;
+
       --card:#121826;
       --card2:#0f1522;
+
       --border:rgba(255,255,255,.08);
       --border2:rgba(255,255,255,.12);
+
       --text:#e6edf3;
       --muted:#9aa4b2;
       --muted2:#7f8a99;
+
       --accent:#4CAF50;
       --accent2:#2dd4bf;
       --warn:#fbbf24;
+
+      /* NEW: brand blues */
+      --titleBlue:#86a7ff;      /* calmer portal-blue for PROJECT IRIS text */
+      --neonBlue:#20d7ff;       /* brighter neon-blue for neutron star */
+
       --shadow: 0 18px 55px rgba(0,0,0,.35);
       --shadow2: 0 8px 24px rgba(0,0,0,.35);
+
       --radius: 16px;
       --radius2: 12px;
+
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
 
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
+
     body{
       margin:0;
       font-family:var(--sans);
@@ -68,29 +80,133 @@
       justify-content:space-between;
       gap:14px;
     }
+
     .brand{
       display:flex;
       align-items:center;
       gap:10px;
-      min-width: 220px;
+      min-width: 260px;
     }
+
+    /* ===== NEW: Neutron Star Mark ===== */
     .mark{
       width:34px;
       height:34px;
       border-radius:10px;
+
+      /* Visible black square */
       background:
-        radial-gradient(circle at 30% 30%, rgba(76,175,80,.35), rgba(76,175,80,.10) 60%, transparent 65%),
-        linear-gradient(135deg, rgba(45,212,191,.18), rgba(255,255,255,.04));
-      border:1px solid var(--border2);
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+        radial-gradient(120px 90px at 30% 20%, rgba(255,255,255,.06), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01)),
+        #06080c;
+
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow: 0 10px 30px rgba(0,0,0,.28);
+      position:relative;
+      overflow:hidden;
+      flex:0 0 auto;
     }
+
+    /* optional subtle “space dust” inside mark */
+    .mark::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,.08), transparent 20%),
+        radial-gradient(circle at 70% 60%, rgba(255,255,255,.06), transparent 22%),
+        radial-gradient(circle at 60% 20%, rgba(32,215,255,.10), transparent 24%),
+        radial-gradient(circle at 30% 70%, rgba(32,215,255,.08), transparent 26%);
+      filter: blur(0.2px);
+      opacity:.55;
+      transform: rotate(12deg);
+      pointer-events:none;
+    }
+
+    /* Center star */
+    .mark .star{
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:10px;
+      height:10px;
+      transform: translate(-50%,-50%);
+      border-radius:999px;
+      background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.95), var(--neonBlue) 45%, rgba(32,215,255,.25) 70%, transparent 76%);
+      box-shadow:
+        0 0 12px rgba(32,215,255,.75),
+        0 0 26px rgba(32,215,255,.35);
+      pointer-events:none;
+    }
+
+    /* Star “spikes” using pseudo elements */
+    .mark .star::before,
+    .mark .star::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:18px;
+      height:2px;
+      background: linear-gradient(90deg, transparent, rgba(32,215,255,.95), transparent);
+      transform: translate(-50%,-50%);
+      opacity:.9;
+      filter: drop-shadow(0 0 6px rgba(32,215,255,.45));
+    }
+    .mark .star::after{
+      transform: translate(-50%,-50%) rotate(90deg);
+      width:18px;
+      height:2px;
+    }
+
+    /* Orbit container */
+    .mark .orbit{
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:22px;
+      height:22px;
+      transform: translate(-50%,-50%);
+      pointer-events:none;
+    }
+
+    /* The orbiting square */
+    .mark .orbit::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:-2px; /* places square at top of orbit path */
+      width:7px;
+      height:7px;
+      transform: translateX(-50%);
+      border-radius:2px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(32,215,255,.55);
+      box-shadow:
+        0 0 10px rgba(32,215,255,.35),
+        inset 0 0 6px rgba(32,215,255,.15);
+    }
+
+    /* orbit animation (visible, not too fast) */
+    .mark .orbit{
+      animation: orbitSpin 2.8s linear infinite;
+    }
+    @keyframes orbitSpin{
+      from{ transform: translate(-50%,-50%) rotate(0deg); }
+      to{ transform: translate(-50%,-50%) rotate(360deg); }
+    }
+
+    /* brand text */
     .brand-title{
-      display:flex; flex-direction:column; line-height:1.1;
+      display:flex;
+      flex-direction:column;
+      line-height:1.1;
     }
     .brand-title strong{
-      font-weight:800;
+      font-weight:900;
       letter-spacing:1.2px;
       font-size:.95rem;
+      color: rgba(255,255,255,.92);
     }
     .brand-title span{
       font-size:.78rem;
@@ -114,43 +230,6 @@
       color:var(--text);
       border-color: var(--border);
       background: rgba(255,255,255,.03);
-    }
-
-    /* ===== Buttons (NEW: used in hero/data) ===== */
-    .btnrow{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top: 12px;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      padding:10px 12px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      color: var(--text);
-      font-size: .88rem;
-      font-weight: 850;
-      letter-spacing:.2px;
-      transition: transform .08s ease, background .12s ease, border-color .12s ease;
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      border-color: var(--border2);
-      background: rgba(255,255,255,.05);
-      color: var(--text);
-    }
-    .btn-primary{
-      border-color: rgba(76,175,80,.35);
-      background: rgba(76,175,80,.12);
-    }
-    .btn-primary:hover{
-      border-color: rgba(76,175,80,.55);
-      background: rgba(76,175,80,.18);
     }
 
     /* ===== Hero ===== */
@@ -177,7 +256,9 @@
       margin:0;
       font-size: 2.05rem;
       letter-spacing: 1.6px;
-      font-weight: 900;
+      font-weight: 950;
+      color: var(--titleBlue); /* DIFFERENT from neon star */
+      text-shadow: 0 0 18px rgba(134,167,255,.15);
     }
     .hero p{
       margin:10px 0 0;
@@ -209,6 +290,41 @@
       box-shadow: 0 0 0 4px rgba(76,175,80,.15);
     }
     .badge strong{ color: var(--text); font-weight:700; }
+
+    .hero-actions{
+      margin-top: 14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color: rgba(255,255,255,.92);
+      font-weight: 800;
+      font-size: .9rem;
+      letter-spacing:.2px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    }
+    .btn:hover{
+      border-color: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.98);
+    }
+    .btn.primary{
+      border-color: rgba(76,175,80,.35);
+      background: rgba(76,175,80,.12);
+    }
+    .btn.primary:hover{
+      border-color: rgba(76,175,80,.55);
+      background: rgba(76,175,80,.16);
+    }
 
     .hero-aside{
       border:1px solid var(--border);
@@ -300,7 +416,7 @@
       background: rgba(76,175,80,.08);
       color: rgba(205,255,214,.92);
       font-size: .78rem;
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing:.6px;
     }
     .chip.secondary{
@@ -316,7 +432,7 @@
     .card h3{
       margin: 6px 0 6px;
       font-size: 1.2rem;
-      font-weight: 850;
+      font-weight: 900;
       letter-spacing:.2px;
     }
     .card p{
@@ -348,7 +464,7 @@
     }
     .metric .v{
       font-size: 1.05rem;
-      font-weight: 850;
+      font-weight: 900;
     }
     .metric code{
       font-family: var(--mono);
@@ -379,39 +495,35 @@
     }
     .callout b{ color: var(--text); }
 
-    /* ===== NEW: BSE Embed Styling ===== */
-    .embed-shell{
-      border:1px solid rgba(255,255,255,.10);
+    /* ===== BSE Demo Embed ===== */
+    .embed{
+      margin-top: 12px;
       border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      overflow: hidden;
       background: rgba(0,0,0,.18);
-      overflow:hidden;
+    }
+    iframe{
+      width:100%;
+      height: 720px;
+      border:0;
+      display:block;
+      background: #06080c;
     }
     .embed-head{
       display:flex;
-      align-items:center;
       justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-      padding: 12px 12px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.02);
-    }
-    .embed-head .title{
-      font-weight:900;
+      align-items:center;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      color: rgba(255,255,255,.9);
+      font-weight: 850;
       letter-spacing:.2px;
-      font-size:.95rem;
     }
-    .embed-head .sub{
+    .embed-head small{
       color: var(--muted);
-      font-size:.86rem;
-      max-width: 72ch;
-    }
-    .embed-frame{
-      width:100%;
-      height: 760px;
-      border:0;
-      display:block;
-      background:#0b0f14;
+      font-weight: 650;
+      letter-spacing:0;
     }
 
     /* ===== Infra split ===== */
@@ -436,34 +548,7 @@
     }
     .row:first-child{ border-top:none; }
     .row span:first-child{ color: var(--muted); }
-    .row span:last-child{ font-weight: 750; }
-
-    /* ===== NEW: FRB figure grid styling ===== */
-    .figgrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 12px;
-    }
-    .figure{
-      border:1px solid rgba(255,255,255,.08);
-      border-radius: 14px;
-      background: rgba(0,0,0,.18);
-      overflow:hidden;
-    }
-    .figure img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
-    .caption{
-      padding: 10px 10px;
-      color: var(--muted);
-      font-size: .85rem;
-      line-height:1.35;
-      border-top: 1px solid rgba(255,255,255,.06);
-      background: rgba(255,255,255,.02);
-    }
+    .row span:last-child{ font-weight: 800; }
 
     /* ===== Footer ===== */
     footer{
@@ -484,10 +569,9 @@
       .hero-grid{ grid-template-columns: 1fr; }
       .infra{ grid-template-columns: 1fr; }
       .grid2{ grid-template-columns: 1fr; }
-      .figgrid{ grid-template-columns: 1fr; }
       .section-head{ align-items:flex-start; }
       .section-head .hint{ text-align:left; }
-      .embed-frame{ height: 920px; }
+      iframe{ height: 860px; }
     }
   </style>
 </head>
@@ -497,7 +581,10 @@
   <div class="topbar">
     <div class="topbar-inner">
       <div class="brand">
-        <div class="mark" aria-hidden="true"></div>
+        <div class="mark" aria-hidden="true">
+          <div class="star"></div>
+          <div class="orbit"></div>
+        </div>
         <div class="brand-title">
           <strong>PROJECT IRIS</strong>
           <span>Research Portal · Technical Track</span>
@@ -535,16 +622,15 @@
             <span class="badge">Standard: <strong>MSRR-Compliant</strong></span>
           </div>
 
-          <!-- NEW: hero CTA buttons -->
-          <div class="btnrow" style="margin-top:14px;">
-            <a class="btn btn-primary" href="./demo/bse-propofol/">Launch BSE Propofol Demo</a>
-            <a class="btn" href="#bse-demo">Preview Demo</a>
-            <a class="btn" href="https://github.com/rupertbcooke/Project-IRIS" target="_blank" rel="noreferrer">Repository</a>
+          <div class="hero-actions">
+            <a class="btn primary" href="./demo/bse-propofol/">Launch BSE Propofol Demo</a>
+            <a class="btn" href="#benchmark">Preview CFM</a>
+            <a class="btn" href="https://github.com/rupertbcooke/Project-IRIS" target="_blank" rel="noopener">Repository</a>
           </div>
         </div>
 
         <aside class="hero-aside">
-          <div style="color:rgba(255,255,255,.9); font-weight:850; letter-spacing:.6px;">Lab Contact</div>
+          <div style="color:rgba(255,255,255,.9); font-weight:900; letter-spacing:.6px;">Lab Contact</div>
           <div class="kv">
             <div class="kv-row"><span>Lead Researcher</span><span>Rupert Cooke</span></div>
             <div class="kv-row"><span>Email</span><span><a href="mailto:rupertbcooke1@gmail.com">rupertbcooke1@gmail.com</a></span></div>
@@ -611,49 +697,36 @@
           </div>
         </article>
 
-        <!-- NEW: BSE Demo Card (clean, single card) -->
-        <article class="card">
+        <!-- BSE Card -->
+        <article class="card" id="bse-demo">
           <div class="card-inner">
             <div class="chiprow">
-              <span class="chip secondary">LIVE DEMO · BSE</span>
-              <span class="badge">Domain: <strong>PK / ODE simulation</strong></span>
+              <span class="chip secondary">LIVE · BSE DEMO</span>
+              <span class="badge">Model: <strong>Propofol (Marsh 1991)</strong></span>
             </div>
 
-            <h3>BSE Interactive PK Demo (Propofol — Marsh 1991)</h3>
+            <h3>BSE Interactive PK Demo</h3>
             <p>
-              Three-compartment pharmacokinetic model (Marsh 1991) solved via RK4 integration.
-              Interactive sliders for weight, bolus, infusion rate/duration, sim time, and dt, with real-time concentration curves and PK metrics.
+              Three-compartment mechanistic PK model solved via RK4 integration, parameterized from literature (Marsh model).
+              Interactive dosing + infusion controls with live concentration curves and metrics.
             </p>
 
-            <div class="grid2">
-              <div class="metric">
-                <div class="k">Model</div>
-                <div class="v">Marsh 3-Compartment PK</div>
-                <div style="margin-top:6px; color:var(--muted); font-size:.88rem;">
-                  Literature-parameterized micro-rate constants, weight-scaled volumes.
-                </div>
-              </div>
-              <div class="metric">
-                <div class="k">Outputs</div>
-                <div class="v">C1 curve + AUC / Cmax / Tmax</div>
-                <div style="margin-top:6px; color:var(--muted); font-size:.88rem;">
-                  Browser-only demo for education/research communication (not medical advice).
-                </div>
-              </div>
+            <div class="hero-actions" style="margin-top:10px;">
+              <a class="btn primary" href="./demo/bse-propofol/">Open Demo (Standalone)</a>
+              <a class="btn" href="./demo/bse-propofol/" target="_blank" rel="noopener">Open in New Tab</a>
             </div>
 
-            <div class="btnrow">
-              <a class="btn btn-primary" href="./demo/bse-propofol/">Launch Demo</a>
-              <a class="btn" href="#bse-demo">Jump to Embed Preview</a>
-            </div>
-
-            <div class="callout">
-              <b>Guardrail:</b> This demo is not a clinical dosing tool and is not validated for patient care.
+            <div class="embed" style="margin-top:14px;">
+              <div class="embed-head">
+                <span>Embedded Simulator</span>
+                <small>Local path: <span class="mono">/demo/bse-propofol/</span></small>
+              </div>
+              <iframe src="./demo/bse-propofol/" loading="lazy"></iframe>
             </div>
           </div>
         </article>
 
-        <!-- BSE (General) Card -->
+        <!-- BSE System Card -->
         <article class="card">
           <div class="card-inner">
             <div class="chiprow">
@@ -681,33 +754,6 @@
           </div>
         </article>
 
-      </div>
-    </section>
-
-    <!-- NEW: Embedded Demo Preview (clean, styled, no broken classes) -->
-    <section id="bse-demo">
-      <div class="section-head">
-        <h2>BSE Demo — Embedded Preview</h2>
-        <div class="hint">If your browser blocks the embed, use “Launch Demo”.</div>
-      </div>
-
-      <div class="embed-shell">
-        <div class="embed-head">
-          <div>
-            <div class="title">Propofol PK (Marsh 1991) — Interactive RK4</div>
-            <div class="sub">Educational / research communication only · not medical advice · not validated for patient care</div>
-          </div>
-          <div class="btnrow" style="margin:0;">
-            <a class="btn btn-primary" href="./demo/bse-propofol/">Open Fullscreen</a>
-          </div>
-        </div>
-
-        <iframe
-          class="embed-frame"
-          src="./demo/bse-propofol/"
-          loading="lazy"
-          title="BSE Propofol PK Demo"
-        ></iframe>
       </div>
     </section>
 
@@ -752,15 +798,15 @@
             <ul>
               <li><strong>1) Ingest:</strong> read trajectories (states over time), normalize channels, define target variables and candidate feature library.</li>
               <li><strong>2) Symbolic candidate generation:</strong> generate ODE candidates via constrained symbolic regression / structured search (candidate families, parameter sweeps).</li>
-              <li><strong>3) Score + reject:</strong> evaluate candidates on fit + stability and discard unstable solutions.</li>
-              <li><strong>4) Residual correction:</strong> train a neural residual model Δ(t, x) to learn mismatch between mechanistic candidate predictions and observed trajectories.</li>
+              <li><strong>3) Score + reject:</strong> evaluate candidates on fit + stability (e.g., exploding/oscillatory divergence, nonphysical trends) and discard unstable solutions.</li>
+              <li><strong>4) Residual correction:</strong> train a neural residual model Δ(t, x) to learn the mismatch between mechanistic candidate predictions and observed trajectories.</li>
               <li><strong>5) Compose:</strong> final model = mechanistic form + residual correction (only if it improves stability/generalization) with versioned metrics.</li>
               <li><strong>6) Feedback:</strong> inject improved equation/parameters back into BSE to iteratively refine the simulator under the same evaluation protocol.</li>
             </ul>
 
             <div class="callout">
               <b>Why residuals:</b> preserves interpretability of the mechanistic backbone while absorbing unmodeled dynamics
-              in a controlled, testable way.
+              (measurement artifacts, omitted nonlinearities, hidden coupling terms) in a controlled, testable way.
             </div>
           </div>
         </article>
@@ -796,17 +842,9 @@
               <li><strong>Run ledger:</strong> each experiment recorded as a row in a CSV.</li>
             </ul>
 
-            <div class="figgrid">
-              <div class="figure">
-                <img src="assets/figures/frb_auc.png" alt="FRB AUC plot" />
-                <div class="caption">ROC/AUC comparison across runs (placeholder until real figure is uploaded).</div>
-              </div>
-              <div class="figure">
-                <img src="assets/figures/frb_score_dist.png" alt="FRB score distribution" />
-                <div class="caption">Score distribution for burst vs non-burst classes.</div>
-              </div>
+            <div class="callout">
+              <b>Note:</b> If your FRB figures aren’t present yet, the portal can still ship — just add your PNGs later under <span class="mono">/assets/figures/</span>.
             </div>
-
           </div>
         </article>
       </div>
@@ -829,11 +867,11 @@
 
             <h3>Downloadable Artifacts</h3>
             <p>
-              Versioned outputs from FRB experiments. Update the run ledger first, then upload
+              Versioned outputs from experiments. Update the run ledger first, then upload
               matching figures and optional ZIP bundles.
             </p>
 
-            <div class="btnrow">
+            <div class="hero-actions" style="margin-top:10px;">
               <a class="btn" href="data/frb_runs.csv" download>FRB Run Ledger</a>
               <a class="btn" href="data/frb_catalog.csv" download>FRB Catalog</a>
               <a class="btn" href="downloads/iris_portal_pack.zip" download>Portal Pack</a>
