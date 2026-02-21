@@ -9,31 +9,22 @@
     :root{
       --bg0:#0b0f14;
       --bg1:#0d1117;
-
       --card:#121826;
       --card2:#0f1522;
-
       --border:rgba(255,255,255,.08);
       --border2:rgba(255,255,255,.12);
-
       --text:#e6edf3;
       --muted:#9aa4b2;
       --muted2:#7f8a99;
-
       --accent:#4CAF50;
       --accent2:#2dd4bf;
       --warn:#fbbf24;
-
-      /* NEW: brand blues */
-      --titleBlue:#86a7ff;      /* calmer portal-blue for PROJECT IRIS text */
-      --neonBlue:#20d7ff;       /* brighter neon-blue for neutron star */
-
+      --titleBlue:#86a7ff;      
+      --neonBlue:#20d7ff;       
       --shadow: 0 18px 55px rgba(0,0,0,.35);
       --shadow2: 0 8px 24px rgba(0,0,0,.35);
-
       --radius: 16px;
       --radius2: 12px;
-
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
@@ -88,18 +79,15 @@
       min-width: 260px;
     }
 
-    /* ===== NEW: Neutron Star Mark ===== */
+    /* ===== Neutron Star Mark ===== */
     .mark{
       width:34px;
       height:34px;
       border-radius:10px;
-
-      /* Visible black square */
       background:
         radial-gradient(120px 90px at 30% 20%, rgba(255,255,255,.06), transparent 55%),
         linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01)),
         #06080c;
-
       border:1px solid rgba(255,255,255,.14);
       box-shadow: 0 10px 30px rgba(0,0,0,.28);
       position:relative;
@@ -107,7 +95,6 @@
       flex:0 0 auto;
     }
 
-    /* optional subtle “space dust” inside mark */
     .mark::before{
       content:"";
       position:absolute;
@@ -123,7 +110,6 @@
       pointer-events:none;
     }
 
-    /* Center star */
     .mark .star{
       position:absolute;
       left:50%;
@@ -139,7 +125,6 @@
       pointer-events:none;
     }
 
-    /* Star “spikes” using pseudo elements */
     .mark .star::before,
     .mark .star::after{
       content:"";
@@ -155,11 +140,8 @@
     }
     .mark .star::after{
       transform: translate(-50%,-50%) rotate(90deg);
-      width:18px;
-      height:2px;
     }
 
-    /* Orbit container */
     .mark .orbit{
       position:absolute;
       left:50%;
@@ -168,14 +150,14 @@
       height:22px;
       transform: translate(-50%,-50%);
       pointer-events:none;
+      animation: orbitSpin 2.8s linear infinite;
     }
 
-    /* The orbiting square */
     .mark .orbit::before{
       content:"";
       position:absolute;
       left:50%;
-      top:-2px; /* places square at top of orbit path */
+      top:-2px;
       width:7px;
       height:7px;
       transform: translateX(-50%);
@@ -187,16 +169,11 @@
         inset 0 0 6px rgba(32,215,255,.15);
     }
 
-    /* orbit animation (visible, not too fast) */
-    .mark .orbit{
-      animation: orbitSpin 2.8s linear infinite;
-    }
     @keyframes orbitSpin{
       from{ transform: translate(-50%,-50%) rotate(0deg); }
       to{ transform: translate(-50%,-50%) rotate(360deg); }
     }
 
-    /* brand text */
     .brand-title{
       display:flex;
       flex-direction:column;
@@ -257,7 +234,7 @@
       font-size: 2.05rem;
       letter-spacing: 1.6px;
       font-weight: 950;
-      color: var(--titleBlue); /* DIFFERENT from neon star */
+      color: var(--titleBlue);
       text-shadow: 0 0 18px rgba(134,167,255,.15);
     }
     .hero p{
@@ -352,7 +329,6 @@
     .kv-row span:last-child{ color: var(--text); font-weight:650; }
     .kv-row a{ color: var(--accent); font-weight:650; }
 
-    /* ===== Sections ===== */
     section{
       margin-top: 26px;
       padding-top: 18px;
@@ -380,7 +356,6 @@
       text-align:right;
     }
 
-    /* ===== Cards ===== */
     .cards{
       display:grid;
       grid-template-columns: 1fr;
@@ -495,7 +470,6 @@
     }
     .callout b{ color: var(--text); }
 
-    /* ===== BSE Demo Embed ===== */
     .embed{
       margin-top: 12px;
       border-radius: 14px;
@@ -526,7 +500,6 @@
       letter-spacing:0;
     }
 
-    /* ===== Infra split ===== */
     .infra{
       display:grid;
       grid-template-columns: 1.1fr .9fr;
@@ -550,7 +523,6 @@
     .row span:first-child{ color: var(--muted); }
     .row span:last-child{ font-weight: 800; }
 
-    /* ===== Footer ===== */
     footer{
       margin-top: 34px;
       padding-top: 22px;
@@ -564,7 +536,6 @@
     }
     .mono{ font-family: var(--mono); }
 
-    /* ===== Responsive ===== */
     @media (max-width: 920px){
       .hero-grid{ grid-template-columns: 1fr; }
       .infra{ grid-template-columns: 1fr; }
@@ -577,7 +548,6 @@
 </head>
 
 <body>
-  <!-- Sticky top nav -->
   <div class="topbar">
     <div class="topbar-inner">
       <div class="brand">
@@ -605,7 +575,6 @@
 
   <div class="wrap">
 
-    <!-- Hero -->
     <header class="hero">
       <div class="hero-grid">
         <div>
@@ -644,7 +613,6 @@
       </div>
     </header>
 
-    <!-- Simulators -->
     <section id="simulators">
       <div class="section-head">
         <h2>Active Research Simulators</h2>
@@ -653,7 +621,6 @@
 
       <div class="cards">
 
-        <!-- CFM Card -->
         <article class="card" id="benchmark">
           <div class="card-inner">
             <div class="chiprow">
@@ -697,7 +664,6 @@
           </div>
         </article>
 
-        <!-- BSE Card -->
         <article class="card" id="bse-demo">
           <div class="card-inner">
             <div class="chiprow">
@@ -726,7 +692,6 @@
           </div>
         </article>
 
-        <!-- BSE System Card -->
         <article class="card">
           <div class="card-inner">
             <div class="chiprow">
@@ -757,7 +722,6 @@
       </div>
     </section>
 
-    <!-- Discovery -->
     <section id="discovery">
       <div class="section-head">
         <h2>Discovery & Optimization</h2>
@@ -813,7 +777,6 @@
       </div>
     </section>
 
-    <!-- FRB -->
     <section id="frb">
       <div class="section-head">
         <h2>FRB Signal Analysis</h2>
@@ -850,7 +813,6 @@
       </div>
     </section>
 
-    <!-- Data -->
     <section id="data">
       <div class="section-head">
         <h2>Data & Downloads</h2>
@@ -886,7 +848,6 @@
       </div>
     </section>
 
-    <!-- Infrastructure -->
     <section id="infrastructure">
       <div class="section-head">
         <h2>Laboratory Infrastructure</h2>
