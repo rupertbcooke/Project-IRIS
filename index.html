@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project IRIS | Research Portal</title>
+
   <style>
     :root{
       --bg0:#0b0f14;
@@ -113,6 +114,43 @@
       color:var(--text);
       border-color: var(--border);
       background: rgba(255,255,255,.03);
+    }
+
+    /* ===== Buttons (NEW: used in hero/data) ===== */
+    .btnrow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 12px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      font-size: .88rem;
+      font-weight: 850;
+      letter-spacing:.2px;
+      transition: transform .08s ease, background .12s ease, border-color .12s ease;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: var(--border2);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+    }
+    .btn-primary{
+      border-color: rgba(76,175,80,.35);
+      background: rgba(76,175,80,.12);
+    }
+    .btn-primary:hover{
+      border-color: rgba(76,175,80,.55);
+      background: rgba(76,175,80,.18);
     }
 
     /* ===== Hero ===== */
@@ -341,6 +379,41 @@
     }
     .callout b{ color: var(--text); }
 
+    /* ===== NEW: BSE Embed Styling ===== */
+    .embed-shell{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      background: rgba(0,0,0,.18);
+      overflow:hidden;
+    }
+    .embed-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      padding: 12px 12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+    }
+    .embed-head .title{
+      font-weight:900;
+      letter-spacing:.2px;
+      font-size:.95rem;
+    }
+    .embed-head .sub{
+      color: var(--muted);
+      font-size:.86rem;
+      max-width: 72ch;
+    }
+    .embed-frame{
+      width:100%;
+      height: 760px;
+      border:0;
+      display:block;
+      background:#0b0f14;
+    }
+
     /* ===== Infra split ===== */
     .infra{
       display:grid;
@@ -365,6 +438,33 @@
     .row span:first-child{ color: var(--muted); }
     .row span:last-child{ font-weight: 750; }
 
+    /* ===== NEW: FRB figure grid styling ===== */
+    .figgrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .figure{
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: 14px;
+      background: rgba(0,0,0,.18);
+      overflow:hidden;
+    }
+    .figure img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    .caption{
+      padding: 10px 10px;
+      color: var(--muted);
+      font-size: .85rem;
+      line-height:1.35;
+      border-top: 1px solid rgba(255,255,255,.06);
+      background: rgba(255,255,255,.02);
+    }
+
     /* ===== Footer ===== */
     footer{
       margin-top: 34px;
@@ -384,8 +484,10 @@
       .hero-grid{ grid-template-columns: 1fr; }
       .infra{ grid-template-columns: 1fr; }
       .grid2{ grid-template-columns: 1fr; }
+      .figgrid{ grid-template-columns: 1fr; }
       .section-head{ align-items:flex-start; }
       .section-head .hint{ text-align:left; }
+      .embed-frame{ height: 920px; }
     }
   </style>
 </head>
@@ -401,15 +503,16 @@
           <span>Research Portal · Technical Track</span>
         </div>
       </div>
-     <nav class="nav">
-  <a href="#simulators">Simulators</a>
-  <a href="#discovery">Discovery</a>
-  <a href="#frb">FRB</a>
-  <a href="#data">Data</a>
-  <a href="#benchmark">CFM v0.40</a>
-  <a href="#infrastructure">Infrastructure</a>
-</nav>
 
+      <nav class="nav">
+        <a href="#simulators">Simulators</a>
+        <a href="#bse-demo">BSE Demo</a>
+        <a href="#discovery">Discovery</a>
+        <a href="#frb">FRB</a>
+        <a href="#data">Data</a>
+        <a href="#benchmark">CFM v0.40</a>
+        <a href="#infrastructure">Infrastructure</a>
+      </nav>
     </div>
   </div>
 
@@ -430,6 +533,13 @@
             <span class="badge"><span class="dot"></span> Status: <strong>Active Development</strong></span>
             <span class="badge">Station: <strong>Sarnia-01</strong></span>
             <span class="badge">Standard: <strong>MSRR-Compliant</strong></span>
+          </div>
+
+          <!-- NEW: hero CTA buttons -->
+          <div class="btnrow" style="margin-top:14px;">
+            <a class="btn btn-primary" href="./demo/bse-propofol/">Launch BSE Propofol Demo</a>
+            <a class="btn" href="#bse-demo">Preview Demo</a>
+            <a class="btn" href="https://github.com/rupertbcooke/Project-IRIS" target="_blank" rel="noreferrer">Repository</a>
           </div>
         </div>
 
@@ -501,49 +611,49 @@
           </div>
         </article>
 
-<li><a href="./demo/bse-propofol/">BSE Demo</a></li>
-        
-<section class="simulator-embed">
-  <h2>BSE Interactive Demo — Propofol PK</h2>
-  <iframe
-    src="./demo/bse-propofol/"
-    width="100%"
-    height="700px"
-    style="border:1px solid rgba(255,255,255,0.10); border-radius:10px;"
-    loading="lazy"
-  ></iframe>
-</section>
-        
-<div class="sim-card">
-  <div class="sim-header">
-    <span class="badge">PROTOTYPE — BSE</span>
-    <span class="domain">Domain: PK/PD physiology</span>
-  </div>
+        <!-- NEW: BSE Demo Card (clean, single card) -->
+        <article class="card">
+          <div class="card-inner">
+            <div class="chiprow">
+              <span class="chip secondary">LIVE DEMO · BSE</span>
+              <span class="badge">Domain: <strong>PK / ODE simulation</strong></span>
+            </div>
 
-<!-- BSE Demo Card -->
-<div class="station-card">
-  <div class="station-card-content">
-    <h3 class="station-card-title">BSE Interactive PK Demo</h3>
-    <p class="station-card-desc">
-      Propofol multi-compartment pharmacokinetic model (Marsh 1991) — interactive slider controls and RK4 integration.
-    </p>
-    <a href="./demo/bse-propofol/" class="btn btn-primary">Launch BSE Demo</a>
-  </div>
-</div>
-  
-  <h3>BSE — Propofol PK Demo</h3>
+            <h3>BSE Interactive PK Demo (Propofol — Marsh 1991)</h3>
+            <p>
+              Three-compartment pharmacokinetic model (Marsh 1991) solved via RK4 integration.
+              Interactive sliders for weight, bolus, infusion rate/duration, sim time, and dt, with real-time concentration curves and PK metrics.
+            </p>
 
-  <p>
-    Three-compartment mechanistic PK model solved via RK4 integration.
-    Interactive dosing and elimination tuning with real-time concentration curves.
-  </p>
+            <div class="grid2">
+              <div class="metric">
+                <div class="k">Model</div>
+                <div class="v">Marsh 3-Compartment PK</div>
+                <div style="margin-top:6px; color:var(--muted); font-size:.88rem;">
+                  Literature-parameterized micro-rate constants, weight-scaled volumes.
+                </div>
+              </div>
+              <div class="metric">
+                <div class="k">Outputs</div>
+                <div class="v">C1 curve + AUC / Cmax / Tmax</div>
+                <div style="margin-top:6px; color:var(--muted); font-size:.88rem;">
+                  Browser-only demo for education/research communication (not medical advice).
+                </div>
+              </div>
+            </div>
 
-  <div class="sim-actions">
-    <a href="demo/bse-propofol/" class="btn-primary">Launch Simulator</a>
-  </div>
-</div>
-        
-        <!-- BSE Card -->
+            <div class="btnrow">
+              <a class="btn btn-primary" href="./demo/bse-propofol/">Launch Demo</a>
+              <a class="btn" href="#bse-demo">Jump to Embed Preview</a>
+            </div>
+
+            <div class="callout">
+              <b>Guardrail:</b> This demo is not a clinical dosing tool and is not validated for patient care.
+            </div>
+          </div>
+        </article>
+
+        <!-- BSE (General) Card -->
         <article class="card">
           <div class="card-inner">
             <div class="chiprow">
@@ -571,6 +681,33 @@
           </div>
         </article>
 
+      </div>
+    </section>
+
+    <!-- NEW: Embedded Demo Preview (clean, styled, no broken classes) -->
+    <section id="bse-demo">
+      <div class="section-head">
+        <h2>BSE Demo — Embedded Preview</h2>
+        <div class="hint">If your browser blocks the embed, use “Launch Demo”.</div>
+      </div>
+
+      <div class="embed-shell">
+        <div class="embed-head">
+          <div>
+            <div class="title">Propofol PK (Marsh 1991) — Interactive RK4</div>
+            <div class="sub">Educational / research communication only · not medical advice · not validated for patient care</div>
+          </div>
+          <div class="btnrow" style="margin:0;">
+            <a class="btn btn-primary" href="./demo/bse-propofol/">Open Fullscreen</a>
+          </div>
+        </div>
+
+        <iframe
+          class="embed-frame"
+          src="./demo/bse-propofol/"
+          loading="lazy"
+          title="BSE Propofol PK Demo"
+        ></iframe>
       </div>
     </section>
 
@@ -615,111 +752,101 @@
             <ul>
               <li><strong>1) Ingest:</strong> read trajectories (states over time), normalize channels, define target variables and candidate feature library.</li>
               <li><strong>2) Symbolic candidate generation:</strong> generate ODE candidates via constrained symbolic regression / structured search (candidate families, parameter sweeps).</li>
-              <li><strong>3) Score + reject:</strong> evaluate candidates on fit + stability (e.g., exploding/oscillatory divergence, nonphysical trends) and discard unstable solutions.</li>
-              <li><strong>4) Residual correction:</strong> train a neural residual model Δ(t, x) to learn the mismatch between mechanistic candidate predictions and observed trajectories.</li>
+              <li><strong>3) Score + reject:</strong> evaluate candidates on fit + stability and discard unstable solutions.</li>
+              <li><strong>4) Residual correction:</strong> train a neural residual model Δ(t, x) to learn mismatch between mechanistic candidate predictions and observed trajectories.</li>
               <li><strong>5) Compose:</strong> final model = mechanistic form + residual correction (only if it improves stability/generalization) with versioned metrics.</li>
               <li><strong>6) Feedback:</strong> inject improved equation/parameters back into BSE to iteratively refine the simulator under the same evaluation protocol.</li>
             </ul>
 
             <div class="callout">
               <b>Why residuals:</b> preserves interpretability of the mechanistic backbone while absorbing unmodeled dynamics
-              (measurement artifacts, omitted nonlinearities, hidden coupling terms) in a controlled, testable way.
+              in a controlled, testable way.
             </div>
           </div>
         </article>
       </div>
     </section>
 
-<!-- FRB -->
-<section id="frb">
-  <div class="section-head">
-    <h2>FRB Signal Analysis</h2>
-    <div class="hint">Burst classification pipeline with reproducible run ledgers and figures.</div>
-  </div>
-
-  <div class="cards">
-    <article class="card">
-      <div class="card-inner">
-        <div class="chiprow">
-          <span class="chip secondary">PIPELINE · FRB v0.10</span>
-          <span class="badge">Mode: <strong>Time-series classification</strong></span>
-        </div>
-
-        <h3>Fast Radio Burst Scoring & Evaluation</h3>
-        <p>
-          A reproducibility-first pipeline that ingests FRB catalogs and derived features,
-          produces event scores, and logs evaluation metrics per run.
-        </p>
-
-        <ul>
-          <li><strong>Ingest:</strong> standardized catalog tables with version tags.</li>
-          <li><strong>Feature layer:</strong> derived burst features and normalization.</li>
-          <li><strong>Model layer:</strong> per-event scoring with versioned outputs.</li>
-          <li><strong>Evaluation:</strong> AUC, PR-AUC, F1, and threshold sweeps.</li>
-          <li><strong>Run ledger:</strong> each experiment recorded as a row in a CSV.</li>
-        </ul>
-
-        <div class="figgrid">
-          <div class="figure">
-            <img src="assets/figures/frb_auc.png" alt="FRB AUC plot" />
-            <div class="caption">
-              ROC/AUC comparison across runs (placeholder until real figure is uploaded).
-            </div>
-          </div>
-          <div class="figure">
-            <img src="assets/figures/frb_score_dist.png" alt="FRB score distribution" />
-            <div class="caption">
-              Score distribution for burst vs non-burst classes.
-            </div>
-          </div>
-        </div>
-
+    <!-- FRB -->
+    <section id="frb">
+      <div class="section-head">
+        <h2>FRB Signal Analysis</h2>
+        <div class="hint">Burst classification pipeline with reproducible run ledgers and figures.</div>
       </div>
-    </article>
-  </div>
-</section>
 
-<!-- Data -->
-<section id="data">
-  <div class="section-head">
-    <h2>Data & Downloads</h2>
-    <div class="hint">Artifacts for replication: datasets, run ledgers, and portal bundles.</div>
-  </div>
+      <div class="cards">
+        <article class="card">
+          <div class="card-inner">
+            <div class="chiprow">
+              <span class="chip secondary">PIPELINE · FRB v0.10</span>
+              <span class="badge">Mode: <strong>Time-series classification</strong></span>
+            </div>
 
-  <div class="cards">
-    <article class="card">
-      <div class="card-inner">
-        <div class="chiprow">
-          <span class="chip">ARTIFACTS · PUBLIC</span>
-          <span class="badge">Format: <strong>CSV / PNG / ZIP</strong></span>
-        </div>
+            <h3>Fast Radio Burst Scoring & Evaluation</h3>
+            <p>
+              A reproducibility-first pipeline that ingests FRB catalogs and derived features,
+              produces event scores, and logs evaluation metrics per run.
+            </p>
 
-        <h3>Downloadable Artifacts</h3>
-        <p>
-          Versioned outputs from FRB experiments. Update the run ledger first, then upload
-          matching figures and optional ZIP bundles.
-        </p>
+            <ul>
+              <li><strong>Ingest:</strong> standardized catalog tables with version tags.</li>
+              <li><strong>Feature layer:</strong> derived burst features and normalization.</li>
+              <li><strong>Model layer:</strong> per-event scoring with versioned outputs.</li>
+              <li><strong>Evaluation:</strong> AUC, PR-AUC, F1, and threshold sweeps.</li>
+              <li><strong>Run ledger:</strong> each experiment recorded as a row in a CSV.</li>
+            </ul>
 
-        <div class="btnrow">
-          <a class="btn" href="data/frb_runs.csv" download>
-            FRB Run Ledger
-          </a>
-          <a class="btn" href="data/frb_catalog.csv" download>
-            FRB Catalog
-          </a>
-          <a class="btn" href="downloads/iris_portal_pack.zip" download>
-            Portal Pack
-          </a>
-        </div>
+            <div class="figgrid">
+              <div class="figure">
+                <img src="assets/figures/frb_auc.png" alt="FRB AUC plot" />
+                <div class="caption">ROC/AUC comparison across runs (placeholder until real figure is uploaded).</div>
+              </div>
+              <div class="figure">
+                <img src="assets/figures/frb_score_dist.png" alt="FRB score distribution" />
+                <div class="caption">Score distribution for burst vs non-burst classes.</div>
+              </div>
+            </div>
 
-        <ul>
-          <li><strong>Run ledger fields:</strong> run_id, date, model, seed, AUC, PRAUC, F1, notes.</li>
-          <li><strong>Portal pack:</strong> latest ledger + figures + short summary README.</li>
-        </ul>
+          </div>
+        </article>
       </div>
-    </article>
-  </div>
-</section>
+    </section>
+
+    <!-- Data -->
+    <section id="data">
+      <div class="section-head">
+        <h2>Data & Downloads</h2>
+        <div class="hint">Artifacts for replication: datasets, run ledgers, and portal bundles.</div>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-inner">
+            <div class="chiprow">
+              <span class="chip">ARTIFACTS · PUBLIC</span>
+              <span class="badge">Format: <strong>CSV / PNG / ZIP</strong></span>
+            </div>
+
+            <h3>Downloadable Artifacts</h3>
+            <p>
+              Versioned outputs from FRB experiments. Update the run ledger first, then upload
+              matching figures and optional ZIP bundles.
+            </p>
+
+            <div class="btnrow">
+              <a class="btn" href="data/frb_runs.csv" download>FRB Run Ledger</a>
+              <a class="btn" href="data/frb_catalog.csv" download>FRB Catalog</a>
+              <a class="btn" href="downloads/iris_portal_pack.zip" download>Portal Pack</a>
+            </div>
+
+            <ul>
+              <li><strong>Run ledger fields:</strong> run_id, date, model, seed, AUC, PRAUC, F1, notes.</li>
+              <li><strong>Portal pack:</strong> latest ledger + figures + short summary README.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
 
     <!-- Infrastructure -->
     <section id="infrastructure">
@@ -775,11 +902,7 @@
       <div>© 2026 Rupert Cooke · Project IRIS Research Portal</div>
       <div class="mono">Reproducibility Standard: MSRR-Compliant · Build: v2026.02</div>
     </footer>
+
   </div>
 </body>
 </html>
-
-
-
-
-
